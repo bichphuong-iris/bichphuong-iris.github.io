@@ -14,85 +14,101 @@
     <link rel="icon" href="images/avatar.jpg">
 
     <style>
-        /* 1. SETUP NỀN WEB (Ảnh backextra.PNG) */
+        /* 1. SETUP NỀN WEB */
         body {
-            /* Thay ảnh nền ở đây */
-            background-image: url("images/backextra.png");
-            background-size: cover;      /* Ảnh phủ kín màn hình */
-            background-attachment: fixed; /* Cuộn chuột nhưng ảnh nền đứng yên (tạo hiệu ứng sang) */
+            /* Đã sửa dấu chấm phẩy và tên file extra.png */
+            background-image: url("images/extra.png");
+            background-size: cover;      
+            background-attachment: fixed; 
             background-position: center;
             margin: 0;
             padding: 20px;
-            color: #0056b3; /* Màu chữ đen xám cho dễ đọc */
+            color: #000000; 
         }
 
-        /* 2. QUY ĐỊNH FONT (Cỡ chữ 18px như bà muốn) */
+        /* 2. QUY ĐỊNH FONT */
         body, p, td, div, a, li {
             font-family: 'Lora', serif;
-            font-size: 18px; /* Chữ to rõ ràng */
-            line-height: 1.6; /* Dãn dòng cho thoáng */
+            font-size: 18px; 
+            line-height: 1.6; 
         }
 
         .title-font {
             font-family: 'Shrikhand', cursive !important;
         }
 
-        /* 3. CÁI KHUNG TRẮNG MỜ (Để chữ nổi lên trên nền ảnh) */
+        /* 3. CÁI KHUNG TRẮNG MỜ */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9); /* Màu trắng độ trong suốt 90% */
+            background-color: rgba(255, 255, 255, 0.85); /* Tăng độ đục lên xíu cho dễ đọc chữ */
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* 4. STYLE CHO TIMELINE (Quan trọng nè) */
+        /* 4. STYLE CHO TIMELINE */
         .timeline-block {
             margin-bottom: 20px;
-            border-bottom: 2px dashed #ddd; /* Đường kẻ đứt nét ngăn cách */
+            border-bottom: 2px dashed #ddd; 
             padding-bottom: 20px;
         }
 
-        /* Nút bấm năm (2021-2024...) */
+        /* Nút bấm năm */
         .timeline-year {
             font-family: 'Shrikhand', cursive;
             font-size: 35px;
-            color: #8B4513; /* Màu nâu đất vintage (giống mockup bà gửi) */
-            cursor: pointer; /* Để chuột vào hiện hình bàn tay */
+            color: #8B4513; 
+            cursor: pointer; 
             padding: 10px 0;
             transition: all 0.3s ease;
         }
         
         .timeline-year:hover {
-            color: #d2691e; /* Di chuột vào đổi màu cam đất */
-            transform: translateX(10px); /* Dịch sang phải xíu */
+            color: #d2691e; 
+            transform: translateX(10px); 
         }
 
-        /* Phần nội dung bị ẩn đi (Lúc đầu chưa bấm thì ẩn) */
+        /* Phần nội dung bị ẩn đi */
         .timeline-content {
-            display: none; /* Ẩn đi */
+            display: none; 
             margin-top: 15px;
-            animation: fadeIn 0.5s; /* Hiệu ứng hiện ra từ từ */
+            animation: fadeIn 0.5s; 
         }
 
-        /* Bố cục chia đôi: Chữ bên trái - Ảnh bên phải */
+        /* --- PHẦN SỬA LẠI ĐỂ ẢNH NẰM NGANG ĐÂY --- */
         .content-flex {
             display: flex;
-            gap: 30px; /* Khoảng cách giữa chữ và ảnh */
+            gap: 40px; /* Tăng khoảng cách cho thoáng */
             align-items: flex-start;
         }
         
-        .text-part { flex: 1; } /* Chữ chiếm phần còn lại */
-        .image-part { width: 300px; } /* Ảnh rộng cố định 300px */
-
-        .image-part img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-    
-    margin-bottom: 15px; /* <--- THÊM DÒNG NÀY: Để 2 ảnh cách nhau ra 15px */
+        .text-part { 
+            flex: 1; 
+        } 
+        
+        /* Chứa 2 ảnh nằm ngang */
+        .image-part { 
+            width: 50%; /* Chiếm 1 nửa chiều rộng */
+            display: flex; /* Xếp ngang */
+            gap: 15px; /* Khoảng cách giữa 2 ảnh */
         }
+
+        /* Chỉnh ảnh đều nhau */
+        .image-part img {
+            width: 50%; /* Mỗi ảnh chiếm 1 nửa không gian của phần ảnh */
+            height: 200px; /* Cố định chiều cao cho đều */
+            object-fit: cover; /* Cắt ảnh tự động */
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .image-part img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        /* ------------------------------------------- */
 
         /* Menu về trang chủ */
         .back-home {
@@ -106,7 +122,6 @@
             font-size: 16px;
         }
 
-        /* Hiệu ứng hiện ra */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -131,22 +146,25 @@
 
         <!-- MỐC 1: 2021 - 2024 -->
         <div class="timeline-block">
-            <!-- Dòng năm (Bấm vào đây nè) -->
             <div class="timeline-year" onclick="toggleTimeline('content-1')">
                 ✦ 2021 - 2024
             </div>
             
-            <!-- Nội dung xổ ra -->
             <div id="content-1" class="timeline-content">
                 <div class="content-flex">
                     <div class="text-part">
-                        <ul>
-                            <li><b>Dự án tình nguyện <a href="https://www.facebook.com/engk31cbg">Tết Ấm cho em</a> trong suốt ba năm học tại trường THPT Chuyên Bắc Giang</li>
-                            <li><b>Giải nhì cuộc thi Giai điệu tuổi hồng phần thi múa vào lớp 12</li>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">
+                                <b>Dự án tình nguyện <a href="https://www.facebook.com/engk31cbg" style="color:#d2691e; text-decoration:none;">Tết Ấm cho em</a></b>
+                                <br>trong suốt ba năm học tại trường THPT Chuyên Bắc Giang
+                            </li>
+                            <li>
+                                <b>Giải nhì cuộc thi Giai điệu tuổi hồng</b>
+                                <br>phần thi múa vào lớp 12
+                            </li>
                         </ul>
                     </div>
                     <div class="image-part">
-                        <!-- Nhớ thay tên ảnh của bà nha -->
                         <img src="images/tace.jpg"> 
                         <img src="images/gdth.jpg">
                     </div>
@@ -172,6 +190,8 @@
                     </div>
                     <div class="image-part">
                         <img src="images/fizz24.jpg">
+                         <!-- Nếu muốn thêm ảnh nữa cho cân thì thêm dòng dưới, ko thì để 1 ảnh cũng được -->
+                         <!-- <img src="images/anh-khac.jpg"> -->
                     </div>
                 </div>
             </div>
@@ -203,20 +223,16 @@
 
     </div>
 
-    <!-- Script thần thánh để bấm nó xổ ra xổ vô -->
     <script>
         function toggleTimeline(id) {
             var element = document.getElementById(id);
             if (element.style.display === "block") {
-                element.style.display = "none"; // Đang mở thì đóng lại
+                element.style.display = "none"; 
             } else {
-                // Đóng tất cả cái khác lại trước khi mở cái mới (cho gọn)
                 var allContents = document.getElementsByClassName("timeline-content");
                 for (var i = 0; i < allContents.length; i++) {
                     allContents[i].style.display = "none";
                 }
-                
-                // Mở cái vừa bấm
                 element.style.display = "block"; 
             }
         }
