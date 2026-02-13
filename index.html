@@ -1,44 +1,23 @@
   <body>
   <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Bùi Bích Phương</title>
+<meta charset="UTF-8">
+<!-- Lấy font Shrikhand và Lora -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+
+<style>
+    /* Ép toàn bộ chữ trong web phải dùng font Lora, trừ cái tiêu đề Shrikhand ra */
+    body, p, td, a, span, div {
+        font-family: 'Lora', serif !important;
+    }
     
-    <meta name="author" content="Bùi Bích Phương">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- Link lấy font Shrikhand và Lora từ Google (Cái này quan trọng nhất nè) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
-
-    <!-- File trang trí cũ -->
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
-    <!-- Icon trên tab trình duyệt -->
-    <link rel="icon" href="images/avatar.jpg">
-
-    <!-- Phần quy định font chữ (CSS) -->
-    <style>
-        /* 1. Ép toàn bộ web dùng font Lora */
-        body, p, td, div, a, span {
-            font-family: 'Lora', serif !important;
-        }
-
-        /* 2. Riêng class nào tên là title-font thì dùng Shrikhand */
-        .title-font {
-            font-family: 'Shrikhand', cursive !important;
-        }
-
-        /* 3. Hiệu ứng hover cho ảnh (làm cho đẹp thêm xíu) */
-        img {
-            transition: all 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.02); /* Phóng to nhẹ khi di chuột vào */
-        }
-    </style>
+    /* Riêng mấy cái tiêu đề to thì dùng Shrikhand */
+    .title-font {
+        font-family: 'Shrikhand', cursive !important;
+    }
+</style>
 </head>
 
 <body>
@@ -96,7 +75,7 @@
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="extracurricular.html">
-                <img src="images/extra.png" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/extra.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
