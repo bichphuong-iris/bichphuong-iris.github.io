@@ -1,15 +1,20 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <meta charset="UTF-8">
-<!-- Lấy cả font Shrikhand (tiêu đề) và Lora (nội dung) -->
+<!-- Lấy font Shrikhand và Lora -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
 
-<!-- Thêm đoạn này để ép toàn bộ web dùng font Lora (trừ mấy cái tiêu đề) -->
 <style>
-    body, p, td, a {
-        font-family: 'Lora', serif;
+    /* Ép toàn bộ chữ trong web phải dùng font Lora, trừ cái tiêu đề Shrikhand ra */
+    body, p, td, a, span, div {
+        font-family: 'Lora', serif !important;
+    }
+    
+    /* Riêng mấy cái tiêu đề to thì dùng Shrikhand */
+    .title-font {
+        font-family: 'Shrikhand', cursive !important;
     }
 </style>
   <head>
@@ -99,7 +104,7 @@
 <table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <tr>
         <td style="width:65%; vertical-align:middle; text-align:right; padding-right:30px;">
-            <a href="academic.html" style="color:#007a33; text-decoration:none; font: size 40px; font-family: 'Shrikhand', cursive;">
+            <a href="academic.html" style="color:#007a33; text-decoration:none; font-size: 40px; hrikhand', cursive;">
                 Academic
             </a>
             <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
@@ -124,7 +129,7 @@
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
             <!-- Nãy bà quên cái chữ ở dòng dưới nè, tui thêm vào rồi nha -->
-            <a href="experience.html" style="color:#ad2368; text-decoration:none; font: size 40px; font-family: 'Shrikhand', cursive;">
+            <a href="experience.html" style="color:#ad2368; text-decoration:none; font-size: 40px; hrikhand', cursive;">
                 Experience / Competition
             </a>
             <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
