@@ -1,29 +1,47 @@
-<!DOCTYPE HTML>
+  <body>
+  <!DOCTYPE HTML>
 <html lang="en">
-<style>
-    /* Quy định chung: Toàn bộ web dùng Lora */
-    body, p, td, div, a {
-        font-family: 'Lora', serif;
-    }
-
-    /* QUAN TRỌNG: Riêng cái nào có tên "title-font" thì BẮT BUỘC dùng Shrikhand */
-    .title-font {
-        font-family: 'Shrikhand', cursive !important;
-    }
-</style>
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>Bùi Bích Phương</title>
-
+    
     <meta name="author" content="Bùi Bích Phương">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="profile.JPG" type="image/x-icon">
+    
+    <!-- Link lấy font Shrikhand và Lora từ Google (Cái này quan trọng nhất nè) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+
+    <!-- File trang trí cũ -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     
-  </head>
+    <!-- Icon trên tab trình duyệt -->
+    <link rel="icon" href="images/avatar.jpg">
 
-  <body>
+    <!-- Phần quy định font chữ (CSS) -->
+    <style>
+        /* 1. Ép toàn bộ web dùng font Lora */
+        body, p, td, div, a, span {
+            font-family: 'Lora', serif !important;
+        }
+
+        /* 2. Riêng class nào tên là title-font thì dùng Shrikhand */
+        .title-font {
+            font-family: 'Shrikhand', cursive !important;
+        }
+
+        /* 3. Hiệu ứng hover cho ảnh (làm cho đẹp thêm xíu) */
+        img {
+            transition: all 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.02); /* Phóng to nhẹ khi di chuột vào */
+        }
+    </style>
+</head>
+
+<body>
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -78,7 +96,7 @@
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="extracurricular.html">
-                <img src="images/exp.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/extra.png" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
@@ -107,7 +125,7 @@
         </td>
         <td style="width:35%; vertical-align:middle">
             <a href="academic.html">
-                <img src="images/aca.png"style="width:100%; border-radius:20px; box-shadow: -5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/aca.png" style="width:100%; border-radius:20px; box-shadow: -5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
     </tr>
@@ -118,12 +136,12 @@
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="experience.html">
-                <img src="images/exp.png"class="title-font" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/exp.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
             <!-- Nãy bà quên cái chữ ở dòng dưới nè, tui thêm vào rồi nha -->
-            <a href="experience.html" style="color:#b1286d; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
+            <a href="experience.html" class="title-font" style="color:#b1286d; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
                 Experience / Competition
             </a>
             <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
