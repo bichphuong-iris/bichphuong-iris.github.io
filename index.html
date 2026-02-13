@@ -1,18 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<meta charset="UTF-8">
-<!-- Lấy font Shrikhand và Lora -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
-
 <style>
-    /* Ép toàn bộ chữ trong web phải dùng font Lora, trừ cái tiêu đề Shrikhand ra */
-    body, p, td, a, span, div {
-        font-family: 'Lora', serif !important;
+    /* Quy định chung: Toàn bộ web dùng Lora */
+    body, p, td, div, a {
+        font-family: 'Lora', serif;
     }
-    
-    /* Riêng mấy cái tiêu đề to thì dùng Shrikhand */
+
+    /* QUAN TRỌNG: Riêng cái nào có tên "title-font" thì BẮT BUỘC dùng Shrikhand */
     .title-font {
         font-family: 'Shrikhand', cursive !important;
     }
@@ -89,7 +83,7 @@
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
             <!-- Tiêu đề dùng font Shrikhand -->
-            <a href="extracurricular.html" style="color:#0056b3; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
+            <a href="extracurricular.html" class="title-font" style="color:#0056b3; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
                 Extracurricular Activities
             </a>
             <!-- Nội dung dùng font Lora (tự động nhận nhờ đoạn code ở Bước 1) -->
@@ -104,7 +98,7 @@
 <table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <tr>
         <td style="width:65%; vertical-align:middle; text-align:right; padding-right:30px;">
-            <a href="academic.html" style="color:#007a33; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
+            <a href="academic.html" class="title-font" style="color:#007a33; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
                 Academic
             </a>
             <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
@@ -124,7 +118,7 @@
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="experience.html">
-                <img src="images/exp.jpg" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/exp.jpg" class="title-font" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
