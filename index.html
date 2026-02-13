@@ -1,11 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <!-- Dòng này chữa lỗi font tiếng Việt -->
 <meta charset="UTF-8">
-
-<!-- 2 Dòng này để lấy font chữ "Shrikhand" siêu đẹp về -->
+<!-- Lấy cả font Shrikhand (tiêu đề) và Lora (nội dung) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+
+<!-- Thêm đoạn này để ép toàn bộ web dùng font Lora (trừ mấy cái tiêu đề) -->
+<style>
+    body, p, td, a {
+        font-family: 'Lora', serif;
+    }
+</style>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -68,57 +74,62 @@
 </html>
 <!-- BẮT ĐẦU PHẦN DANH MỤC XỊN XÒ -->
 
-<!-- MỤC 1: EXTRACURRICULAR (Ảnh Trái - Chữ Phải) -->
+<!-- MỤC 1: EXTRACURRICULAR -->
 <table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="extracurricular.html">
-                <!-- Thay tên ảnh ở dưới này nha -->
-                <img src="images/extra.png" style="width:100%;border-radius:25px;box-shadow: 5 5px 15px rgba(0,0,0,0.1);">
+                <img src="images/extra.png" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
-            <a href="extracurricular.html" style="color:#0056b3; text-decoration:none; font-size:28px; font-family: 'Shrikhand', cursive;">
+            <!-- Tiêu đề dùng font Shrikhand -->
+            <a href="extracurricular.html" style="color:#0056b3; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
                 Extracurricular Activities
             </a>
-            <p>Hoạt động ngoại khóa, CLB</p>
+            <!-- Nội dung dùng font Lora (tự động nhận nhờ đoạn code ở Bước 1) -->
+            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
+                Hoạt động ngoại khóa, CLB
+            </p>
         </td>
     </tr>
 </table>
 
-<!-- MỤC 2: ACADEMIC (Chữ Trái - Ảnh Phải) -->
+<!-- MỤC 2: ACADEMIC -->
 <table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <tr>
         <td style="width:65%; vertical-align:middle; text-align:right; padding-right:30px;">
-            <a href="academic.html" style="color:#007a33; text-decoration:none; font-size:28px; font-family: 'Shrikhand', cursive;">
+            <a href="academic.html" style="color:#007a33; text-decoration:none; font: size 40px; font-family: 'Shrikhand', cursive;">
                 Academic
             </a>
-            <p style="font-size: 16px; margin-top: 10px;">Bảng điểm và thành tích học tập "khủng"</p>
+            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
+                Bảng điểm và thành tích học tập
+            </p>
         </td>
         <td style="width:35%; vertical-align:middle">
             <a href="academic.html">
-                <!-- Thay tên ảnh ở dưới này nha -->
                 <img src="images/aca.png" style="width:100%; border-radius:20px; box-shadow: -5px 5px 15px rgba(0,0,0,0.2);">
+            </a>
         </td>
     </tr>
 </table>
 
-<!-- MỤC 3: EXPERIENCE / COMPETITION (Ảnh Trái - Chữ Phải) -->
-<!-- Nhớ tạo file experience.html nếu chưa có nha -->
+<!-- MỤC 3: EXPERIENCE -->
 <table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <tr>
         <td style="width:35%; vertical-align:middle">
             <a href="experience.html">
-                <!-- Thay tên ảnh ở dưới này nha -->
-                <img src="images/exp.png" style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="images/exp.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
             </a>
         </td>
         <td style="width:65%; vertical-align:middle; padding-left:30px;">
-            <a href="experience.html" style="color:#9d1559; text-decoration:none; font-size:28px; font-family: 'Shrikhand', cursive;">
+            <!-- Nãy bà quên cái chữ ở dòng dưới nè, tui thêm vào rồi nha -->
+            <a href="experience.html" style="color:#ad2368; text-decoration:none; font: size 40px; font-family: 'Shrikhand', cursive;">
+                Experience / Competition
             </a>
-            <p>Kinh nghiệm chinh chiến các cuộc thi</p>
+            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
+                Kinh nghiệm chinh chiến các cuộc thi
+            </p>
         </td>
     </tr>
 </table>
-
-<!-- KẾT THÚC PHẦN DANH MỤC -->
