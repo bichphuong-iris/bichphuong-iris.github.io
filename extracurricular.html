@@ -1,64 +1,223 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <title>Bùi Bích Phương</title>
-
-    <meta name="author" content="Bùi Bích Phương">
+    <title>Extracurricular Activities</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="profile.JPG" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     
-  </head>
+    <!-- Lấy font (Giống bên index) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+    
+    <!-- Icon -->
+    <link rel="icon" href="images/avatar.jpg">
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Bùi Bích Phương
-                </p>
-                <p>
-		I'm currently a junior at <a href="https://english.ftu.edu.vn/">Foreign Trade University</a> in Ha Noi, Viet Nam.<br>
-    At FTU, my major is International Business. Technically, I have studied and am going to study about how to participate in the global business market.<br>
-    I graduated from <a href="https://www.facebook.com/thpt.cbg/">Bac Giang Gifted High School</a>, specializing in English.<br>
-    I've achieved the Third prize in the National English Contest, BUT IT WAS ALL THE PAST.
-                </p>
-                <p style="text-align:center">
-                <a href="cv.html">CV</a> &nbsp;/&nbsp;
-    <a href="extracurricular.html">Extracurricular Activities</a> &nbsp;/&nbsp;
-    <a href="academic.html">Extracurricular Activities</a> &nbsp;/&nbsp;
-                  <a href="mailto:buibichphuong.forwork@gmail.com">Email</a> &nbsp;/&nbsp;
-                  <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp;
-                  <a href="https://www.facebook.com/share/1TmgBSdZRZ/?mibextid=wwXIfr">Facebook</a> &nbsp;/&nbsp;
-              </p>
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/avatar.JPG"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/avatar.JPG" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Interest</h2>
-                <p>
-                  I'm interested in handsome boys, as many other girls. However, <span class="highlight">MONEY</span> even attracted me more.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+    <style>
+        /* 1. SETUP NỀN WEB (Ảnh backextra.PNG) */
+        body {
+            /* Thay ảnh nền ở đây */
+            background-image: url("images/backextra.png")
+            background-size: cover;      /* Ảnh phủ kín màn hình */
+            background-attachment: fixed; /* Cuộn chuột nhưng ảnh nền đứng yên (tạo hiệu ứng sang) */
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: #333; /* Màu chữ đen xám cho dễ đọc */
+        }
 
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-    </table>
-  </body>
+        /* 2. QUY ĐỊNH FONT (Cỡ chữ 18px như bà muốn) */
+        body, p, td, div, a, li {
+            font-family: 'Lora', serif;
+            font-size: 18px; /* Chữ to rõ ràng */
+            line-height: 1.6; /* Dãn dòng cho thoáng */
+        }
+
+        .title-font {
+            font-family: 'Shrikhand', cursive !important;
+        }
+
+        /* 3. CÁI KHUNG TRẮNG MỜ (Để chữ nổi lên trên nền ảnh) */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Màu trắng độ trong suốt 90% */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* 4. STYLE CHO TIMELINE (Quan trọng nè) */
+        .timeline-block {
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ddd; /* Đường kẻ đứt nét ngăn cách */
+            padding-bottom: 20px;
+        }
+
+        /* Nút bấm năm (2021-2024...) */
+        .timeline-year {
+            font-family: 'Shrikhand', cursive;
+            font-size: 35px;
+            color: #8B4513; /* Màu nâu đất vintage (giống mockup bà gửi) */
+            cursor: pointer; /* Để chuột vào hiện hình bàn tay */
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-year:hover {
+            color: #d2691e; /* Di chuột vào đổi màu cam đất */
+            transform: translateX(10px); /* Dịch sang phải xíu */
+        }
+
+        /* Phần nội dung bị ẩn đi (Lúc đầu chưa bấm thì ẩn) */
+        .timeline-content {
+            display: none; /* Ẩn đi */
+            margin-top: 15px;
+            animation: fadeIn 0.5s; /* Hiệu ứng hiện ra từ từ */
+        }
+
+        /* Bố cục chia đôi: Chữ bên trái - Ảnh bên phải */
+        .content-flex {
+            display: flex;
+            gap: 30px; /* Khoảng cách giữa chữ và ảnh */
+            align-items: flex-start;
+        }
+        
+        .text-part { flex: 1; } /* Chữ chiếm phần còn lại */
+        .image-part { width: 300px; } /* Ảnh rộng cố định 300px */
+
+        .image-part img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Menu về trang chủ */
+        .back-home {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .back-home a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Hiệu ứng hiện ra */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Nút quay về trang chủ -->
+        <div class="back-home">
+            <a href="index.html">← Back to Home</a>
+        </div>
+
+        <!-- Tiêu đề trang -->
+        <h1 class="title-font" style="text-align:center; font-size: 50px; color:#333; margin-bottom: 50px;">
+            Extracurricular Activities
+        </h1>
+
+        <!-- ================= TIMELINE BẮT ĐẦU ================= -->
+
+        <!-- MỐC 1: 2021 - 2024 -->
+        <div class="timeline-block">
+            <!-- Dòng năm (Bấm vào đây nè) -->
+            <div class="timeline-year" onclick="toggleTimeline('content-1')">
+                ✦ 2021 - 2024
+            </div>
+            
+            <!-- Nội dung xổ ra -->
+            <div id="content-1" class="timeline-content">
+                <div class="content-flex">
+                    <div class="text-part">
+                        <ul>
+                            <li><b>Dự án tình nguyện <a href="https://www.facebook.com/engk31cbg">Tết Ấm cho em</a> trong suốt ba năm học tại trường THPT Chuyên Bắc Giang</li>
+                            <li><b>Giải nhì cuộc thi Giai điệu tuổi hồng phần thi múa vào lớp 12</li>
+                        </ul>
+                    </div>
+                    <div class="image-part">
+                        <!-- Nhớ thay tên ảnh của bà nha -->
+                        <img src="images/tace.jpg"> 
+                        <img src="images/gdth.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MỐC 2: 2024 - 2025 -->
+        <div class="timeline-block">
+            <div class="timeline-year" onclick="toggleTimeline('content-2')">
+                ✦ 2024 - 2025
+            </div>
+            
+            <div id="content-2" class="timeline-content">
+                <div class="content-flex">
+                    <div class="text-part">
+                        <p>Đây là quãng thời gian ở đại học nè</p>
+                        <ul>
+                            <li>10/2024: Trở thành thành viên BTC CLB Thương Mại điện tử trường ĐH Ngoại Thương - ECOM CLUB FTU</li>
+                            <li>12/2024: Tham gia tổ chức cuộc thi Fizz Up Challenge về Affiliate Marketing mùa thứ 2</li>
+                            <li>8/2025: Tham gia tổ chức cuộc thi E-Compete: Kiến tạo doanh nhân số về Thương mại điện tử xuyên biên giới mùa thứ 2</li>
+                        </ul>
+                    </div>
+                    <div class="image-part">
+                        <img src="images/fizz24.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MỐC 3: 2025 - 2026 -->
+        <div class="timeline-block" style="border-bottom: none;">
+            <div class="timeline-year" onclick="toggleTimeline('content-3')">
+                ✦ 2025 - 2026
+            </div>
+            
+            <div id="content-3" class="timeline-content">
+                <div class="content-flex">
+                    <div class="text-part">
+                        <p>Các hoạt động của năm 2</p>
+                        <ul>
+                            <li>10/2025: Trở thành phó BTC CLB Thương Mại điện tử trường ĐH Ngoại Thương - ECOM CLUB FTU</li>
+                            <li>1/2026: Tham gia tổ chức cuộc thi Fizz Up Challenge về Affiliate Marketing mùa thứ 3</li>
+                    </div>
+                    <div class="image-part">
+                        <img src="images/fizz25.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= KẾT THÚC TIMELINE ================= -->
+
+    </div>
+
+    <!-- Script thần thánh để bấm nó xổ ra xổ vô -->
+    <script>
+        function toggleTimeline(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none"; // Đang mở thì đóng lại
+            } else {
+                // Đóng tất cả cái khác lại trước khi mở cái mới (cho gọn)
+                var allContents = document.getElementsByClassName("timeline-content");
+                for (var i = 0; i < allContents.length; i++) {
+                    allContents[i].style.display = "none";
+                }
+                
+                // Mở cái vừa bấm
+                element.style.display = "block"; 
+            }
+        }
+    </script>
+
+</body>
 </html>
