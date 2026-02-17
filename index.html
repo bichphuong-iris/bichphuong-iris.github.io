@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
     
-    <link rel="icon" href="images/avatar.jpg">
+    <link rel="icon" href="images/avt.JPG">
 
     <style>
         /* --- CẤU HÌNH CHUNG --- */
@@ -18,116 +18,121 @@
             margin: 0;
             padding: 0;
             font-family: 'Lora', serif;
-            background-color: #f4f1ea; /* Màu kem giống video */
+            background-color: #f4f1ea; /* Màu kem nền nã */
             color: #1a1a1a;
-            overflow-x: hidden; /* Cấm trượt ngang */
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; }
 
         /* --- PHẦN 1: MỞ ĐẦU (INTRO) --- */
         .intro-section {
-            height: 100vh; /* Cao full màn hình */
+            height: 90vh; /* Không để full 100vh để lòi cái chữ Portfolio ở dưới ra */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Nằm trên chữ nền */
         }
 
         .my-avatar {
             width: 250px;
             height: 250px;
-            object-fit: cover;
-            border-radius: 50%; /* Tròn xoe */
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            object-fit: cover; /* Cắt ảnh vừa khung */
+            object-position: top center; /* Ưu tiên lấy phần đầu (để không bị mất trán) */
+            border-radius: 50%;
+            margin-bottom: 30px;
+            border: 4px solid #1a1a1a; /* Viền đen cho ngầu */
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1); /* Bóng cứng style retro */
             transition: transform 0.5s;
         }
-        .my-avatar:hover { transform: scale(1.1) rotate(5deg); }
+        .my-avatar:hover { transform: scale(1.05) rotate(5deg); }
 
         .big-name {
             font-family: 'Shrikhand', cursive;
-            font-size: 60px;
+            font-size: 70px; /* To vật vã */
             margin: 0;
-            color: #2c3e50;
+            color: #1a1a1a;
+            letter-spacing: 2px;
         }
 
         .sub-text {
-            font-size: 20px;
-            max-width: 600px;
+            font-size: 22px;
+            max-width: 700px;
             margin-top: 20px;
             line-height: 1.6;
-            color: #555;
+            color: #444;
+            font-weight: 500;
         }
 
         /* --- PHẦN 2: CHỮ NỀN (PORTFOLIO) --- */
-        /* Cái chữ to đùng nằm chìm phía sau */
+        /* Chữ này đứng yên, nội dung sẽ lướt đè lên nó */
         .bg-text {
-            position: fixed;
-            bottom: -50px;
+            position: fixed; /* Dính chặt */
+            bottom: -30px; /* Nằm sát đáy */
             left: 0;
             width: 100%;
             text-align: center;
             font-family: 'Archivo Black', sans-serif;
-            font-size: 15vw; /* Chữ to theo màn hình */
-            color: rgba(0,0,0,0.05); /* Mờ mờ ảo ảo */
+            font-size: 16vw; /* Chữ to khổng lồ tự chỉnh theo màn hình */
+            color: #1a1a1a; /* Màu đen đậm (không mờ nữa) */
             z-index: 0; /* Nằm dưới cùng */
-            pointer-events: none; /* Không cho bấm vào */
+            pointer-events: none;
+            line-height: 0.8;
         }
 
         /* --- PHẦN 3: HIỆU ỨNG THẺ BÀI (STICKY CARDS) --- */
         .cards-container {
             padding-bottom: 100px;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Nằm đè lên chữ nền */
         }
 
         .card {
-            position: sticky; /* THẦN CHÚ: Giúp thẻ dính lại */
-            top: 100px; /* Dính cách đỉnh 100px */
+            position: sticky; /* Hiệu ứng xếp chồng bài */
+            top: 100px; /* Điểm dính */
             
             width: 90%;
-            max-width: 900px;
-            height: 500px; /* Chiều cao thẻ */
-            margin: 0 auto 50px auto; /* Căn giữa */
+            max-width: 1000px;
+            height: 550px;
+            margin: 0 auto 80px auto; /* Khoảng cách giữa các thẻ */
             
             background-color: white;
-            border-radius: 30px;
-            border: 2px solid #1a1a1a; /* Viền đen giống video */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-radius: 40px;
+            border: 3px solid #1a1a1a; /* Viền đen đậm */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Bóng đổ xịn */
             
             display: flex;
             overflow: hidden;
             transition: transform 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px); /* Di chuột vào thì nảy lên xíu */
-        }
+        /* Màu nền riêng cho từng thẻ */
+        .card-1 { background-color: #FDF6E3; } /* Vàng kem */
+        .card-2 { background-color: #E0F2F1; } /* Xanh mint */
+        .card-3 { background-color: #F3E5F5; } /* Tím nhạt */
 
-        /* Màu nền riêng cho từng thẻ cho nó rực rỡ */
-        .card-1 { background-color: #ffebd3; } /* Màu kem cam */
-        .card-2 { background-color: #e0f7fa; } /* Màu xanh mát */
-        .card-3 { background-color: #f3e5f5; } /* Màu tím mộng mơ */
-
-        /* Bố cục trong thẻ: Ảnh trái - Chữ phải */
+        /* Bố cục: Ảnh 50% - Chữ 50% */
         .card-img {
             width: 50%;
             height: 100%;
+            border-right: 3px solid #1a1a1a;
         }
         .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-right: 2px solid #1a1a1a;
+            transition: transform 0.5s;
+        }
+        .card:hover .card-img img {
+            transform: scale(1.1); /* Phóng to ảnh nhẹ khi di chuột */
         }
 
         .card-content {
             width: 50%;
-            padding: 40px;
+            padding: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -136,80 +141,98 @@
 
         .card-title {
             font-family: 'Shrikhand', cursive;
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: #333;
+            font-size: 45px;
+            margin: 0 0 20px 0;
+            color: #1a1a1a;
         }
 
         .card-desc {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.5;
         }
 
         .card-btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 18px 40px;
             background-color: #1a1a1a;
             color: white;
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
+            font-size: 14px;
             border-radius: 50px;
             width: fit-content;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            border: 2px solid #1a1a1a;
         }
         .card-btn:hover {
-            background-color: #444;
-            color: #fff;
+            background-color: transparent; /* Trong suốt */
+            color: #1a1a1a; /* Chữ đen */
+            transform: translateY(-3px);
         }
 
-        /* --- PHẦN 4: LIÊN HỆ (FOOTER) --- */
+        /* --- PHẦN 4: LIÊN HỆ --- */
         .footer {
             background-color: #1a1a1a;
-            color: white;
-            padding: 80px 20px;
+            color: #f4f1ea;
+            padding: 100px 20px;
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Đè lên tất cả */
         }
         .footer h2 {
             font-family: 'Shrikhand', cursive;
-            font-size: 50px;
-            margin-bottom: 30px;
+            font-size: 60px;
+            margin: 0 0 30px 0;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
         }
         .footer-links a {
-            color: white;
-            margin: 0 15px;
-            font-size: 20px;
-            border-bottom: 1px solid white;
+            font-size: 24px;
+            border-bottom: 2px solid transparent;
+            transition: border 0.3s;
+        }
+        .footer-links a:hover {
+            border-bottom: 2px solid #f4f1ea;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- CHỮ NỀN TO ĐÙNG -->
+    <!-- CHỮ NỀN TO ĐÙNG (Cố định ở đáy) -->
     <div class="bg-text">PORTFOLIO</div>
 
-    <!-- PHẦN 1: GIỚI THIỆU (Hiện ra đầu tiên) -->
+    <!-- PHẦN 1: GIỚI THIỆU -->
     <div class="intro-section">
-        <!-- Thay ảnh đại diện xịn xò của bà vào đây -->
+        <!-- Ảnh đại diện: avt.JPG -->
         <img src="images/avt.JPG" class="my-avatar">
         
-        <h1 class="big-name">Bùi Bích Phương</h1>
+        <!-- Tên không dấu cho đỡ lỗi font -->
+        <h1 class="big-name">Bui Bich Phuong</h1>
+        
         <p class="sub-text">
-            Hi, I'm a junior at FTU. I love handsome boys but MONEY attracts me more.<br>
+            Hi, I'm a junior at FTU. <br>
             Welcome to my creative world!
         </p>
-        <p style="margin-top: 20px; font-size: 14px; color: #888;">↓ Scroll down to explore ↓</p>
+        
+        <p style="margin-top: 40px; font-size: 14px; font-family: 'Archivo Black', sans-serif; color: #1a1a1a;">
+            ↓ SCROLL TO EXPLORE
+        </p>
     </div>
 
-    <!-- PHẦN 2: CÁC THẺ BÀI (Lướt là dính) -->
+    <!-- PHẦN 2: CÁC THẺ BÀI (Sticky Cards) -->
+    <!-- Lúc lướt xuống, mấy cái thẻ này sẽ đè lên chữ PORTFOLIO -->
     <div class="cards-container">
 
         <!-- THẺ 1: EXTRACURRICULAR -->
         <div class="card card-1">
             <div class="card-img">
-                <!-- Thay ảnh -->
+                <!-- Ảnh: extra.png -->
                 <img src="images/extra.png">
             </div>
             <div class="card-content">
@@ -222,12 +245,13 @@
         <!-- THẺ 2: ACADEMIC -->
         <div class="card card-2">
             <div class="card-img">
-                <!-- Thay ảnh -->
+                <!-- Ảnh: study.jpg (bà thay đúng tên file ảnh học tập vào đây nha, ví dụ aca-hero.jpg nãy tui bảo) -->
+                <!-- Tạm để extra.png để bà test, nhớ thay ảnh khác cho đẹp -->
                 <img src="images/aca.png">
             </div>
             <div class="card-content">
                 <h2 class="card-title">Academic</h2>
-                <p class="card-desc">Bảng điểm và thành tích học tập</p>
+                <p class="card-desc">Các chứng nhận và thành tích học tập</p>
                 <a href="academic.html" class="card-btn">Explore</a>
             </div>
         </div>
@@ -235,29 +259,29 @@
         <!-- THẺ 3: EXPERIENCE -->
         <div class="card card-3">
             <div class="card-img">
-                <!-- Thay ảnh -->
+                <!-- Ảnh: exp.png -->
                 <img src="images/exp.png">
             </div>
             <div class="card-content">
                 <h2 class="card-title">Experience</h2>
-                <p class="card-desc">Kinh nghiệm thực chiến và các cuộc thi đã tham gia.</p>
+                <p class="card-desc">Kinh nghiệm thực chiến và các cuộc thi đã tham gia</p>
                 <a href="experience.html" class="card-btn">View Details</a>
             </div>
         </div>
 
     </div>
 
-    <!-- PHẦN 3: LIÊN HỆ (Cuối trang) -->
+    <!-- PHẦN 3: LIÊN HỆ -->
     <div class="footer">
         <h2>Let's work together!</h2>
-        <p style="font-size: 20px; margin-bottom: 40px;">buibichphuong.forwork@gmail.com</p>
+        <p style="font-size: 22px; margin-bottom: 50px;">buibichphuong.forwork@gmail.com</p>
         
         <div class="footer-links">
-            <a href="https://www.facebook.com/share/1TmgBSdZRZ/?mibextid=wwXIfr">Facebook</a>
             <a href="cv.html">My CV</a>
+            <a href="https://www.facebook.com/share/1TmgBSdZRZ/?mibextid=wwXIfr">Facebook</a>
             <a href="#">Instagram</a>
         </div>
-        <p style="margin-top: 50px; font-size: 12px; opacity: 0.5;">© 2026 Bui Bich Phuong. All rights reserved.</p>
+        <p style="margin-top: 80px; font-size: 14px; opacity: 0.5;">© 2026 Bui Bich Phuong.</p>
     </div>
 
 </body>
