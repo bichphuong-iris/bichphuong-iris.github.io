@@ -140,10 +140,23 @@
             margin: 0 auto 40px auto;
         }
 
+       /* Thay đoạn .content-text cũ bằng đoạn này nha */
         .content-text {
             font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            width: fit-content; /* QUAN TRỌNG: Cái này ép cái khung co lại vừa khít với dòng chữ */
+            margin: 0 auto;     /* Cái này bê nguyên cái khung ra giữa màn hình */
+            text-align: left;   /* Cái này căn trái chữ bên trong */
+            padding: 0 20px;    /* Cách lề tí cho thoáng */
+        }
+        
+        /* Thêm cái này để chỉnh mấy cái gạch đầu dòng cho đẹp */
+        .content-text ul {
+            padding-left: 20px; /* Thụt vào xíu */
+            margin: 0;
+        }
+        
+        .content-text li {
+            margin-bottom: 10px; /* Các dòng cách nhau ra tí cho dễ thở */
         }
 
         /* --- PHẦN 3: STYLE RIÊNG TỪNG MỤC (Cho khác bọt) --- */
@@ -203,9 +216,15 @@
         
         <div class="divider"></div>
         
+        <!-- Sửa lại phần nội dung của Certificate nha -->
         <div class="content-text">
-            <p>IELTS 8.0 (Reading 8.5, Listening 8.5, Speaking 7.5, Writing 7.0)</p>
-            <p>MOS Expert Excel 2019 - Score: 1000/1000</p>
+            <ul>
+                <li>IELTS 8.0 (Reading 9.0, Listening 8.5, Speaking 7.0, Writing 7.0)</li>
+                <li>MOS Expert Word 365 Apps - Score: 960/1000</li>
+                <li>MOS Expert Excel 365 Apps - Score: 980/1000</li>
+                <li>MOS Expert PowerPoint 365 Apps - Score: 978/1000</li>
+                <li>MOS Expert Word 365 Apps Specialist</li>
+            </ul>
         </div>
     </section>
 
@@ -219,9 +238,11 @@
         <div class="divider"></div>
         
         <div class="content-text">
-            <p>Cumulative GPA: 3.8/4.0</p>
-            <p>Excellent Student Scholarship - Semester 1, 2 (2024-2025)</p>
-            <p>Major: International Business</p>
+          <ul>
+            <li>Cumulative GPA [until 1st semester of 2nd year]: 3.895/4.0</li>
+            <li>Encouragement Scholarship for Student - Semester 1 (2024-2025)</li>
+            <li>Major: International Business</li>
+          </ul>
         </div>
     </section>
 
