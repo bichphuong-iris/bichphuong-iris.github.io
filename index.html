@@ -1,131 +1,264 @@
-  <body>
-  <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="en">
-<meta charset="UTF-8">
-<!-- Lấy font Shrikhand và Lora -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
-
-<style>
-    /* Ép toàn bộ chữ trong web phải dùng font Lora, trừ cái tiêu đề Shrikhand ra */
-    body, p, td, a, span, div {
-        font-family: 'Lora', serif !important;
-    }
+<head>
+    <meta charset="UTF-8">
+    <title>Bùi Bích Phương Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    /* Riêng mấy cái tiêu đề to thì dùng Shrikhand */
-    .title-font {
-        font-family: 'Shrikhand', cursive !important;
-    }
-</style>
+    <!-- Lấy font xịn xò -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="images/avatar.jpg">
+
+    <style>
+        /* --- CẤU HÌNH CHUNG --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: #f4f1ea; /* Màu kem giống video */
+            color: #1a1a1a;
+            overflow-x: hidden; /* Cấm trượt ngang */
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- PHẦN 1: MỞ ĐẦU (INTRO) --- */
+        .intro-section {
+            height: 100vh; /* Cao full màn hình */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .my-avatar {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%; /* Tròn xoe */
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.5s;
+        }
+        .my-avatar:hover { transform: scale(1.1) rotate(5deg); }
+
+        .big-name {
+            font-family: 'Shrikhand', cursive;
+            font-size: 60px;
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .sub-text {
+            font-size: 20px;
+            max-width: 600px;
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* --- PHẦN 2: CHỮ NỀN (PORTFOLIO) --- */
+        /* Cái chữ to đùng nằm chìm phía sau */
+        .bg-text {
+            position: fixed;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 15vw; /* Chữ to theo màn hình */
+            color: rgba(0,0,0,0.05); /* Mờ mờ ảo ảo */
+            z-index: 0; /* Nằm dưới cùng */
+            pointer-events: none; /* Không cho bấm vào */
+        }
+
+        /* --- PHẦN 3: HIỆU ỨNG THẺ BÀI (STICKY CARDS) --- */
+        .cards-container {
+            padding-bottom: 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            position: sticky; /* THẦN CHÚ: Giúp thẻ dính lại */
+            top: 100px; /* Dính cách đỉnh 100px */
+            
+            width: 90%;
+            max-width: 900px;
+            height: 500px; /* Chiều cao thẻ */
+            margin: 0 auto 50px auto; /* Căn giữa */
+            
+            background-color: white;
+            border-radius: 30px;
+            border: 2px solid #1a1a1a; /* Viền đen giống video */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            
+            display: flex;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Di chuột vào thì nảy lên xíu */
+        }
+
+        /* Màu nền riêng cho từng thẻ cho nó rực rỡ */
+        .card-1 { background-color: #ffebd3; } /* Màu kem cam */
+        .card-2 { background-color: #e0f7fa; } /* Màu xanh mát */
+        .card-3 { background-color: #f3e5f5; } /* Màu tím mộng mơ */
+
+        /* Bố cục trong thẻ: Ảnh trái - Chữ phải */
+        .card-img {
+            width: 50%;
+            height: 100%;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-right: 2px solid #1a1a1a;
+        }
+
+        .card-content {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .card-title {
+            font-family: 'Shrikhand', cursive;
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .card-desc {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            border-radius: 50px;
+            width: fit-content;
+            transition: background 0.3s;
+        }
+        .card-btn:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        /* --- PHẦN 4: LIÊN HỆ (FOOTER) --- */
+        .footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .footer h2 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 20px;
+            border-bottom: 1px solid white;
+        }
+    </style>
 </head>
 
 <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Bùi Bích Phương
-                </p>
-                <p>
-		I'm currently a junior at <a href="https://english.ftu.edu.vn/">Foreign Trade University</a> in Ha Noi, Viet Nam.<br>
-    At FTU, my major is International Business. Technically, I have studied and am going to study about how to participate in the global business market.<br>
-    I graduated from <a href="https://www.facebook.com/thpt.cbg/">Bac Giang Gifted High School</a>, specializing in English.<br>
-    I've achieved the Third prize in the National English Contest, BUT IT WAS ALL THE PAST.
-                </p>
-                <p style="text-align:center">
-                <a href="cv.html">CV</a> &nbsp;/&nbsp;
-                  <a href="mailto:buibichphuong.forwork@gmail.com">Email</a> &nbsp;/&nbsp;
-                  <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp;
-                  <a href="https://www.facebook.com/share/1TmgBSdZRZ/?mibextid=wwXIfr">Facebook</a> &nbsp;/&nbsp;
-              </p>
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/avt.JPG"><img style="width:100%;max-width:100%;object-fit: cover;" src="images/avt.JPG" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Interest</h2>
-                <p>
-                  I'm interested in handsome boys, as many other girls. However, <span class="highlight">MONEY</span> even attracted me more.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
 
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-    </table>
-  </body>
+    <!-- CHỮ NỀN TO ĐÙNG -->
+    <div class="bg-text">PORTFOLIO</div>
+
+    <!-- PHẦN 1: GIỚI THIỆU (Hiện ra đầu tiên) -->
+    <div class="intro-section">
+        <!-- Thay ảnh đại diện xịn xò của bà vào đây -->
+        <img src="images/avt.JPG" class="my-avatar">
+        
+        <h1 class="big-name">Bùi Bích Phương</h1>
+        <p class="sub-text">
+            Hi, I'm a junior at FTU. I love handsome boys but MONEY attracts me more.<br>
+            Welcome to my creative world!
+        </p>
+        <p style="margin-top: 20px; font-size: 14px; color: #888;">↓ Scroll down to explore ↓</p>
+    </div>
+
+    <!-- PHẦN 2: CÁC THẺ BÀI (Lướt là dính) -->
+    <div class="cards-container">
+
+        <!-- THẺ 1: EXTRACURRICULAR -->
+        <div class="card card-1">
+            <div class="card-img">
+                <!-- Thay ảnh -->
+                <img src="images/extra.png">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Extracurricular</h2>
+                <p class="card-desc">Hoạt động ngoại khóa và CLB</p>
+                <a href="extracurricular.html" class="card-btn">See More</a>
+            </div>
+        </div>
+
+        <!-- THẺ 2: ACADEMIC -->
+        <div class="card card-2">
+            <div class="card-img">
+                <!-- Thay ảnh -->
+                <img src="images/aca.png">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Academic</h2>
+                <p class="card-desc">Bảng điểm và thành tích học tập</p>
+                <a href="academic.html" class="card-btn">Explore</a>
+            </div>
+        </div>
+
+        <!-- THẺ 3: EXPERIENCE -->
+        <div class="card card-3">
+            <div class="card-img">
+                <!-- Thay ảnh -->
+                <img src="images/exp.png">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Experience</h2>
+                <p class="card-desc">Kinh nghiệm thực chiến và các cuộc thi đã tham gia.</p>
+                <a href="experience.html" class="card-btn">View Details</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PHẦN 3: LIÊN HỆ (Cuối trang) -->
+    <div class="footer">
+        <h2>Let's work together!</h2>
+        <p style="font-size: 20px; margin-bottom: 40px;">buibichphuong.forwork@gmail.com</p>
+        
+        <div class="footer-links">
+            <a href="https://www.facebook.com/share/1TmgBSdZRZ/?mibextid=wwXIfr">Facebook</a>
+            <a href="cv.html">My CV</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p style="margin-top: 50px; font-size: 12px; opacity: 0.5;">© 2026 Bui Bich Phuong. All rights reserved.</p>
+    </div>
+
+</body>
 </html>
-<!-- BẮT ĐẦU PHẦN DANH MỤC XỊN XÒ -->
-
-<!-- MỤC 1: EXTRACURRICULAR -->
-<table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
-    <tr>
-        <td style="width:35%; vertical-align:middle">
-            <a href="extracurricular.html">
-                <img src="images/extra.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
-            </a>
-        </td>
-        <td style="width:65%; vertical-align:middle; padding-left:30px;">
-            <!-- Tiêu đề dùng font Shrikhand -->
-            <a href="extracurricular.html" class="title-font" style="color:#0056b3; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
-                Extracurricular Activities
-            </a>
-            <!-- Nội dung dùng font Lora (tự động nhận nhờ đoạn code ở Bước 1) -->
-            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
-                Hoạt động ngoại khóa, CLB
-            </p>
-        </td>
-    </tr>
-</table>
-
-<!-- MỤC 2: ACADEMIC -->
-<table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
-    <tr>
-        <td style="width:65%; vertical-align:middle; text-align:right; padding-right:30px;">
-            <a href="academic.html" class="title-font" style="color:#007a33; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
-                Academic
-            </a>
-            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
-                Bảng điểm và thành tích học tập
-            </p>
-        </td>
-        <td style="width:35%; vertical-align:middle">
-            <a href="academic.html">
-                <img src="images/aca.png" style="width:100%; border-radius:20px; box-shadow: -5px 5px 15px rgba(0,0,0,0.2);">
-            </a>
-        </td>
-    </tr>
-</table>
-
-<!-- MỤC 3: EXPERIENCE -->
-<table style="width:85%; max-width:900px; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto; margin-top: 40px;">
-    <tr>
-        <td style="width:35%; vertical-align:middle">
-            <a href="experience.html">
-                <img src="images/exp.png"style="width:100%; border-radius:20px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
-            </a>
-        </td>
-        <td style="width:65%; vertical-align:middle; padding-left:30px;">
-            <!-- Nãy bà quên cái chữ ở dòng dưới nè, tui thêm vào rồi nha -->
-            <a href="experience.html" class="title-font" style="color:#b1286d; text-decoration:none; font-size:40px; font-family: 'Shrikhand', cursive;">
-                Experience / Competition
-            </a>
-            <p style="font-size: 18px; margin-top: 10px; line-height: 1.5;">
-                Kinh nghiệm chinh chiến các cuộc thi
-            </p>
-        </td>
-    </tr>
-</table>
