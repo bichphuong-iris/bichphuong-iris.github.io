@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experience Diary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Lấy font Lora (nội dung) và Patrick Hand (chữ viết tay cute) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="images/avt.JPG">
+
+    <style>
+        /* --- 1. THIẾT LẬP NỀN BÀN (Moodboard xanh pastel) --- */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #D6E4F0; /* Màu xanh baby blue */
+            background-image: radial-gradient(#ffffff 20%, transparent 20%),
+                              radial-gradient(#ffffff 20%, transparent 20%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-color: #bedae8; /* Màu nền chủ đạo */
+            font-family: 'Lora', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Cấm cuộn lung tung */
+        }
+
+        /* --- 2. QUYỂN SỔ LÒ XO (BOOK CONTAINER) --- */
+        .book {
+            position: relative;
+            width: 900px; /* Độ rộng quyển sổ */
+            height: 600px;
+            perspective: 1500px; /* Tạo độ sâu 3D */
+        }
+
+        /* --- 3. CÁC TRANG SÁCH (PAGES) --- */
+        .page {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FDFCF0; /* Màu giấy kem ngà */
+            border-radius: 10px 20px 20px 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            transform-origin: left center; /* Điểm xoay là gáy sách bên trái */
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); /* Hiệu ứng lật mượt */
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+            box-sizing: border-box;
+            border-left: 15px solid #e0d8c3; /* Gáy sách giả */
+            z-index: 1;
+            backface-visibility: hidden; /* Ẩn mặt sau */
+        }
+
+        /* Lớp giấy bìa cứng phía sau cùng (để khi lật hết không bị trống) */
+        .back-cover {
+            position: absolute;
+            top: 5px; left: 5px;
+            width: 100%; height: 100%;
+            background-color: #8d6e63;
+            border-radius: 10px 20px 20px 10px;
+            z-index: 0;
+        }
+
+        /* --- 4. TRANG TRÍ LÒ XO (SPIRAL) --- */
+        .spiral {
+            position: absolute;
+            left: -15px;
+            top: 30px;
+            width: 30px;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+        }
+        .ring {
+            width: 40px;
+            height: 15px;
+            background: linear-gradient(to bottom, #ccc, #555, #ccc);
+            border-radius: 10px;
+            transform: rotate(-5deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* --- 5. NỘI DUNG BÊN TRONG --- */
+        
+        /* Font viết tay cho tiêu đề */
+        h1, h2 {
+            font-family: 'Patrick Hand', cursive;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        h1 { font-size: 60px; text-align: center; margin-top: 150px; color: #2c3e50; }
+        h2 { font-size: 40px; margin-bottom: 20px; border-bottom: 2px dashed #bbb; display: inline-block; }
+
+        p { font-size: 18px; line-height: 1.6; color: #555; }
+
+        /* Bố cục nội dung: Chữ trên - Ảnh dưới */
+        .content-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Khu vực ảnh Polaroid */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px; /* Viền trắng kiểu polaroid */
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .polaroid:nth-child(2) { transform: rotate(2deg); margin-top: 20px; } /* Ảnh 2 nghiêng chiều khác */
+        
+        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
+
+        .polaroid img {
+            width: 280px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* --- 6. DECOR (Băng dính, Ghim) --- */
+        .tape {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background-color: rgba(243, 229, 171, 0.6); /* Màu vàng trong suốt */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 6;
+        }
+        
+        .pin {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff7675, #d63031);
+            position: absolute;
+            top: 10px; right: 20px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* --- 7. NÚT ĐIỀU HƯỚNG --- */
+        .nav-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 24px;
+            background: none;
+            border: 2px solid #555;
+            padding: 5px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover { background: #555; color: white; }
+
+        .back-btn { left: 50px; right: auto; } /* Nút quay lại nằm bên trái */
+        .home-btn { top: 20px; right: 20px; bottom: auto; border: none; font-size: 20px; }
+
+        /* Lớp phủ khi lật trang (Flip classes) */
+        .flipped {
+            transform: rotateY(-180deg); /* Lật úp sang trái */
+            z-index: 0; /* Chui xuống dưới */
+        }
+        
+        /* Màu nền riêng cho trang bìa cho đẹp */
+        #page-cover {
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Pattern nhẹ */
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="book">
+        <div class="back-cover"></div> <!-- Bìa cứng đỡ lưng -->
+
+        <!-- LÒ XO (Decor) -->
+        <div class="spiral">
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        </div>
+
+        <!-- === TRANG 3: KẾT THÚC (Nằm dưới cùng) === -->
+        <div class="page" id="page-3" style="z-index: 1;">
+            <div class="content-layout">
+                <div class="pin" style="background: radial-gradient(circle at 30% 30%, #74b9ff, #0984e3);"></div>
+                <h2 style="color: #d63031;">More to come...</h2>
+                <p>Hành trình chinh phục các cuộc thi vẫn sẽ còn tiếp tục 🐱‍🏍</p>
+                <div style="margin-top: 50px; text-align: center;">
+                    <img src="images/avatar.jpg" style="width: 150px; border-radius: 50%; border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                </div>
+                <!-- Nút quay về trang trước -->
+                <button class="nav-btn back-btn" onclick="flipBack(2)">← Quay lại</button>
+            </div>
+            <a href="index.html" class="nav-btn home-btn">Home 🏠</a>
+        </div>
+
+        <!-- === TRANG 2: E-BATTLEFIELD (Nằm giữa) === -->
+        <div class="page" id="page-2" style="z-index: 2;">
+            <div class="content-layout">
+                <div class="pin"></div> <!-- Cái ghim đỏ -->
+                <h2>Top 20 E-Battlefield</h2>
+                <p style="font-style: italic; color: #888;">Cuộc thi thực chiến kinh doanh - Mùa III</p>
+                <p style="font-style: italic; color: #888;">E-Battlefield là cuộc thi thực chiến kinh doanh TMĐT Xuyên biên giới với mùa III hướng đến việc sử dụng AI trong Thương mại điện tử thông qua mô hình vận hàng kinh doanh thực chiến trên các sàn thương mại điện tử.</p>
+                
+                <p>Một hành trình đầy kỷ niệm và bài học. Tôi đã học được cách vận hành shop trên Amazon, làm đề án kinh doanh cũng như chạy lượng. Tuy chưa thể lọt vào vòng Chung kết nhưng đây sẽ là kinh nghiệm đáng giá cho tôi trong những cuộc thi tiếp theo.</p>
+
+                <!-- Ảnh polaroid -->
+                <div class="photo-gallery">
+                    <div class="polaroid">
+                        <div class="tape"></div> <!-- Băng dính -->
+                        <!-- Ảnh 1: Thay tên file nha -->
+                        <img src="images/ebf.png">
+                    </div>
+                    <div class="polaroid">
+                        <div class="tape" style="transform: translateX(-50%) rotate(5deg);"></div>
+                        <!-- Ảnh 2: Thay tên file nha -->
+                        <img src="images/ebf2.jpg">
+                    </div>
+                </div>
+
+                <button class="nav-btn" onclick="flipPage(2)">Next Page →</button>
+                <button class="nav-btn back-btn" onclick="flipBack(1)">← Quay lại</button>
+            </div>
+        </div>
+
+        <!-- === TRANG 1: APEC STARTUP (Nằm trên cùng trang nội dung) === -->
+        <div class="page" id="page-1" style="z-index: 3;">
+            <div class="content-layout">
+                <div class="pin" style="background: radial-gradient(circle at 30% 30%, #fdcb6e, #e17055);"></div>
+                <h2>APEC Startup Competition</h2>
+                <p style="font-style: italic; color: #888;">Top 90 ý tưởng xuất sắc nhất - Cuộc thi APEC Khai phóng ý tưởng khởi nghiệp Lần thứ I</p>
+                
+                <p>Đây là lần đầu tiên tôi mang ý tưởng khởi nghiệp ra biển lớn. Cạnh tranh với hơn 1000 ý tưởng vô cùng xuất sắc khác, lọt vào Top 90 là một niềm tự hào siêu to khổng lồ.</p>
+                <p>Ý tưởng của nhóm có tên Life Saver X - robot hỗ trợ phân loại chấn thương nhằm mục đích giúp các y bác sĩ có thể tập trung tốt hơn vào các ca bệnh nặng hoặc nguy kịch. </p>
+
+                <div class="photo-gallery">
+                    <div class="polaroid">
+                        <div class="tape"></div>
+                        <!-- Ảnh 1 -->
+                        <img src="images/apec.jpg">
+                    </div>
+                    <div class="polaroid">
+                        <div class="tape" style="transform: translateX(-50%) rotate(-5deg);"></div>
+                        <!-- Ảnh 2 -->
+                        <img src="images/apec2.jpg">
+                    </div>
+                </div>
+
+                <button class="nav-btn" onclick="flipPage(1)">Next Page →</button>
+                <button class="nav-btn back-btn" onclick="flipBack(0)">← Quay lại</button>
+            </div>
+        </div>
+
+        <!-- === TRANG BÌA (COVER - Nằm trên cùng tuyệt đối) === -->
+        <div class="page" id="page-0" style="z-index: 4; display: flex; align-items: center; justify-content: center; background-color: #f7f1e3;">
+            <div style="border: 4px double #8B4513; padding: 40px; transform: rotate(-2deg);">
+                <h1>My Experience<br>Diary</h1>
+                <p style="text-align: center; margin-top: 20px;">— Bùi Bích Phương —</p>
+            </div>
+            
+            <div style="position: absolute; bottom: 50px; right: 50px; transform: rotate(10deg);">
+                <span style="font-family: 'Patrick Hand'; font-size: 24px;">Open me! ➔</span>
+            </div>
+            
+            <!-- Nút mở sách -->
+            <button class="nav-btn" style="bottom: 50px; left: 50%; transform: translateX(-50%);" onclick="flipPage(0)">Mở Sổ Ra</button>
+            
+            <a href="index.html" class="nav-btn home-btn">Home 🏠</a>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT ĐỂ LẬT TRANG -->
+    <script>
+        // Hàm lật đi (Next)
+        function flipPage(pageIndex) {
+            // Lấy trang hiện tại
+            var currentPage = document.getElementById('page-' + pageIndex);
+            
+            // Thêm class 'flipped' để nó xoay 180 độ
+            currentPage.classList.add('flipped');
+        }
+
+        // Hàm lật lại (Back)
+        function flipBack(prevPageIndex) {
+            // Lấy trang TRƯỚC ĐÓ (cái trang vừa bị lật đi ấy)
+            var prevPage = document.getElementById('page-' + prevPageIndex);
+            
+            // Gỡ class 'flipped' để nó xoay về vị trí cũ
+            prevPage.classList.remove('flipped');
+        }
+    </script>
+
+</body>
+</html>
