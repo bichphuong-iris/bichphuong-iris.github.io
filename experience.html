@@ -5,7 +5,7 @@
     <title>Aesthetic Journal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Lấy font Playfair Display (Sang chảnh) và Lora (Dễ đọc) -->
+    <!-- Lấy font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -13,16 +13,14 @@
     <link rel="icon" href="images/avt.JPG">
 
     <style>
-        /* --- 1. SETUP NỀN AESTHETIC --- */
+        /* --- 1. SETUP NỀN --- */
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            /* Nền màu be (#f5f0e1) + Chấm bi xanh (#74b9ff) */
             background-color: #f5f0e1;
-            background-image: radial-gradient(#89a6c7 15%, transparent 15%); /* Chấm bi xanh pastel */
-            background-size: 25px 25px; /* Kích thước chấm bi */
-            
+            background-image: radial-gradient(#89a6c7 15%, transparent 15%);
+            background-size: 25px 25px;
             font-family: 'Lora', serif;
             display: flex;
             justify-content: center;
@@ -30,17 +28,17 @@
             overflow: hidden; 
         }
 
-        /* --- 2. QUYỂN SỔ KÍ HỌA (SKETCHBOOK CONTAINER) --- */
+        /* --- 2. QUYỂN SỔ TO BỰ (Đã chỉnh sửa kích thước) --- */
         .book {
             position: relative;
-            width: 800px;
-            height: 600px; /* Khung hình chữ nhật đứng/hoặc vuông tùy ảnh */
-            perspective: 2000px; /* Tạo độ sâu 3D */
-            margin-top: 50px;
+            /* Chỉnh to ra theo ý bà nè */
+            width: 90vw;  /* Chiếm 90% chiều ngang màn hình */
+            max-width: 1400px; /* Giới hạn không quá bè nếu màn hình quá rộng */
+            height: 90vh; /* Chiếm 90% chiều cao màn hình */
+            perspective: 2500px;
         }
 
-        /* --- 3. GÁY XOẮN NGANG (TOP SPIRAL) --- */
-        /* Đây là cái còng nằm ngang ở trên nè */
+        /* --- 3. GÁY XOẮN --- */
         .spiral-top {
             position: absolute;
             top: -25px;
@@ -48,172 +46,151 @@
             width: 90%;
             height: 50px;
             display: flex;
-            justify-content: space-evenly; /* Rải đều còng ra */
+            justify-content: space-evenly;
             z-index: 20;
         }
 
         .ring {
-            width: 15px;
-            height: 40px;
-            background: linear-gradient(to right, #888, #ddd, #888); /* Màu kim loại */
+            width: 20px; /* To hơn xíu cho cân đối với sổ lớn */
+            height: 50px;
+            background: linear-gradient(to right, #888, #ddd, #888);
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            z-index: 20;
         }
 
-        /* --- 4. CÁC TRANG GIẤY (PAGES) --- */
+        /* --- 4. TRANG GIẤY --- */
         .page {
             position: absolute;
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            
-            /* Màu giấy trắng ngà, có vân giấy nhẹ */
             background-color: #fffbf2; 
             border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            
-            /* Hiệu ứng bóng đổ để tạo cảm giác dày dặn */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            
-            /* QUAN TRỌNG: ĐIỂM XOAY NẰM Ở TRÊN ĐỈNH (TOP) ĐỂ LẬT LÊN */
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             transform-origin: top center; 
             transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            
             display: flex;
             flex-direction: column;
-            padding: 50px 60px; /* Chừa chỗ cho còng ở trên */
+            padding: 60px 80px; /* Tăng lề bên trong vì sổ to hơn */
             box-sizing: border-box;
-            
-            overflow: hidden; /* CẮT BỎ PHẦN ẢNH LÒI RA NGOÀI */
-            backface-visibility: hidden; /* Ẩn mặt sau */
+            overflow: hidden;
+            backface-visibility: hidden;
         }
 
-        /* --- 5. STYLE CHỮ (TYPOGRAPHY) - SANG TRỌNG --- */
+        /* --- 5. TYPOGRAPHY --- */
         h1, h2 {
-            font-family: 'Playfair Display', serif; /* Font mới sang xịn */
+            font-family: 'Playfair Display', serif;
             color: #2c3e50;
             margin: 0;
         }
 
         h1 { 
-            font-size: 70px; 
+            font-size: 80px; /* Chữ to hơn */
             text-align: center; 
-            margin-top: 140px; 
+            margin-top: 80px; 
             letter-spacing: 2px;
             font-style: italic;
+            line-height: 1.2;
         }
         
         h2 { 
-            font-size: 42px; 
+            font-size: 48px; 
             margin-bottom: 10px; 
             position: relative;
             display: inline-block;
         }
         
-        /* Gạch chân tiêu đề kiểu aesthetic */
         h2::after {
             content: '';
             position: absolute;
-            bottom: 5px; left: 0;
-            width: 100%; height: 10px;
-            background-color: rgba(149, 175, 192, 0.3); /* Màu xanh khói mờ */
+            bottom: 8px; left: 0;
+            width: 100%; height: 12px;
+            background-color: rgba(149, 175, 192, 0.3);
             z-index: -1;
         }
 
         p { 
-            font-size: 17px; 
+            font-size: 19px; /* Chữ to lên cho dễ đọc */
             line-height: 1.8; 
             color: #555; 
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .italic-sub {
             font-style: italic;
             color: #7f8c8d;
-            font-size: 16px;
+            font-size: 20px;
             margin-top: -10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- 6. LAYOUT ẢNH (COLLAGE STYLE) --- */
+        /* --- 6. LAYOUT ẢNH --- */
         .photo-section {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: auto; /* Đẩy xuống dưới */
-            margin-bottom: 20px;
+            gap: 40px;
+            margin-top: auto;
+            margin-bottom: 40px;
         }
 
         .aesthetic-img {
             width: 45%;
-            height: 220px;
+            height: 350px; /* Ảnh to hơn vì sổ to hơn */
             object-fit: cover;
-            border: 8px solid white; /* Viền trắng dày */
+            border: 10px solid white;
             box-shadow: 2px 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
         
-        /* Hiệu ứng xếp ảnh lộn xộn nghệ thuật */
-        .img-left { transform: rotate(-3deg); }
-        .img-right { transform: rotate(3deg) translateY(10px); }
+        .img-left { transform: rotate(-2deg); }
+        .img-right { transform: rotate(2deg) translateY(10px); }
         
         .aesthetic-img:hover {
-            transform: scale(1.05) rotate(0deg);
+            transform: scale(1.02) rotate(0deg);
             z-index: 5;
         }
 
-        /* --- 7. DECOR (Stickers) --- */
-        .tape-strip {
-            position: absolute;
-            width: 120px; height: 35px;
-            background-color: rgba(223, 230, 233, 0.5); /* Màu trắng đục */
-            top: -15px; left: 50%;
-            transform: translateX(-50%) rotate(2deg);
-            backdrop-filter: blur(2px);
-        }
-        
-        .sticker-circle {
-            position: absolute;
-            width: 50px; height: 50px;
-            background-color: #fab1a0; /* Màu cam đào */
-            border-radius: 50%;
-            top: 20px; right: 30px;
-            opacity: 0.8;
-        }
-
-        /* --- 8. NAVIGATION --- */
+        /* --- 7. DECOR & NAV --- */
         .nav-control {
             position: absolute;
-            bottom: 20px;
-            right: 30px;
+            bottom: 30px;
+            right: 40px;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             border-bottom: 1px solid #333;
             transition: all 0.3s;
         }
         .nav-control:hover { letter-spacing: 1px; }
+        .back-control { left: 40px; right: auto; }
+        .home-control { position: absolute; top: 20px; right: 30px; font-size: 18px; border: none; }
 
-        .back-control { left: 30px; right: auto; }
-        .home-control { position: absolute; top: 15px; right: 20px; font-size: 16px; border: none; }
-
-        /* Lớp phủ lật trang (Flip Up) */
         .flipped-up {
-            transform: rotateX(180deg); /* LẬT NGƯỢC LÊN TRÊN */
+            transform: rotateX(180deg);
             z-index: 0;
-            pointer-events: none; /* Lật rồi thì không bấm được nữa */
+            pointer-events: none;
         }
         
         /* Bìa sổ */
         #cover-page {
-            background-color: #d1ccc0; /* Màu bìa nâu xám tây tây */
+            background-color: #d1ccc0;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #b2bec3;
+        }
+
+        /* STICKER & TAPE */
+        .sticker-circle {
+            position: absolute;
+            width: 60px; height: 60px;
+            background-color: #fab1a0;
+            border-radius: 50%;
+            top: 40px; right: 50px;
+            opacity: 0.8;
         }
 
     </style>
@@ -223,33 +200,35 @@
 
     <div class="book">
         
-        <!-- CÒNG NGANG Ở TRÊN (Style sổ ký họa) -->
+        <!-- CÒNG NGANG -->
         <div class="spiral-top">
+            <!-- Thêm nhiều vòng hơn vì sổ to hơn -->
             <div class="ring"></div><div class="ring"></div><div class="ring"></div>
             <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-            <div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div>
         </div>
 
         <!-- === TRANG CUỐI (Nằm dưới cùng) === -->
         <div class="page" id="page-3" style="z-index: 1;">
-            <div style="text-align: center; margin-top: 100px;">
-                <h1 style="font-size: 50px; margin-top: 0;">End of Chapter 1</h1>
-                <p style="max-width: 500px; margin: 30px auto;">"Mọi hành trình dài đều bắt đầu từ những bước đi nhỏ bé. Cảm ơn bạn đã xem qua những dấu ấn đầu tiên của mình."</p>
-                <img src="images/avt.JPG" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-top: 30px; border: 3px solid #b2bec3;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                <h1 style="font-size: 60px; margin-top: 0;">End of Chapter 1</h1>
+                <p style="max-width: 600px; text-align: center; margin: 40px auto;">"Mọi hành trình dài đều bắt đầu từ những bước đi nhỏ bé. Cảm ơn bạn đã xem qua những dấu ấn đầu tiên của mình."</p>
+                
+                <!-- AVATAR CÂN GIỮA NÈ -->
+                <img src="images/avt.JPG" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center; border: 6px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
             </div>
             
-            <!-- Nút quay về trang trước -->
             <div class="nav-control back-control" onclick="flipBack(2)">↓ Previous</div>
             <a href="index.html" class="home-control">Back to Home</a>
         </div>
 
         <!-- === TRANG 2: E-BATTLEFIELD === -->
         <div class="page" id="page-2" style="z-index: 2;">
-            <div class="tape-strip" style="left: 20%; transform: rotate(-5deg);"></div>
-            
             <h2>Top 20 E-Battlefield</h2>
             <div class="italic-sub">The 3rd Season - Cross-border E-commerce Contest</div>
-            <p style="font-style: italic; color: #888;">E-Battlefield là cuộc thi thực chiến kinh doanh TMĐT Xuyên biên giới với mùa III hướng đến việc sử dụng AI trong Thương mại điện tử thông qua mô hình vận hàng kinh doanh thực chiến trên các sàn thương mại điện tử.</p> 
+            
+            <p>E-Battlefield là cuộc thi thực chiến kinh doanh TMĐT Xuyên biên giới với mùa III hướng đến việc sử dụng AI trong Thương mại điện tử thông qua mô hình vận hàng kinh doanh thực chiến trên các sàn thương mại điện tử.</p> 
             <p>Một hành trình đầy kỷ niệm và bài học. Tôi đã học được cách vận hành shop trên Amazon, làm đề án kinh doanh cũng như chạy lượng. Tuy chưa thể lọt vào vòng Chung kết nhưng đây sẽ là kinh nghiệm đáng giá cho tôi trong những cuộc thi tiếp theo.</p>
 
             <div class="photo-section">
@@ -273,7 +252,6 @@
             <p>Đây là lần đầu tiên tôi mang ý tưởng khởi nghiệp ra biển lớn. Cạnh tranh với hơn 1000 ý tưởng vô cùng xuất sắc khác, lọt vào Top 90 là một niềm tự hào siêu to khổng lồ.</p>
             <p>Ý tưởng của nhóm có tên Life Saver X - robot hỗ trợ phân loại chấn thương nhằm mục đích giúp các y bác sĩ có thể tập trung tốt hơn vào các ca bệnh nặng hoặc nguy kịch. </p>
 
-
             <div class="photo-section">
                 <!-- ẢNH 1 -->
                 <img src="images/apec.jpg" class="aesthetic-img img-left">
@@ -285,28 +263,27 @@
             <div class="nav-control back-control" onclick="flipBack(0)">↓ Previous</div>
         </div>
 
-        <!-- === TRANG BÌA (Nằm trên cùng) === -->
+        <!-- === TRANG BÌA (ĐÃ ĐỔI TÊN) === -->
         <div class="page" id="page-0" style="z-index: 4; background-color: #dcdde1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <!-- Khung viền trang trí -->
-            <div style="border: 2px solid #2c3e50; padding: 40px; width: 60%; text-align: center;">
-                <h1 style="margin-top: 0; font-size: 80px;">The Diary</h1>
-                <p style="font-family: 'Playfair Display', serif; font-style: italic; margin-top: 10px;">of Bui Bich Phuong</p>
+            <div style="border: 3px solid #2c3e50; padding: 60px; width: 70%; text-align: center;">
+                <!-- ĐỔI TIÊU ĐỀ THEO Ý BÀ NÈ -->
+                <h1 style="margin-top: 0; font-size: 75px;">Experience /<br>Competition</h1>
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; margin-top: 20px; font-size: 24px;">of Bui Bich Phuong</p>
             </div>
             
-            <div class="nav-control" style="bottom: 80px; font-size: 24px;" onclick="flipPage(0)">Open ➔</div>
+            <div class="nav-control" style="bottom: 80px; font-size: 28px;" onclick="flipPage(0)">Open ➔</div>
             <a href="index.html" class="home-control">Home</a>
         </div>
 
     </div>
 
     <script>
-        // Lật lên (Flip UP)
         function flipPage(pageIndex) {
             var currentPage = document.getElementById('page-' + pageIndex);
             currentPage.classList.add('flipped-up');
         }
 
-        // Lật xuống lại (Flip Down)
         function flipBack(prevPageIndex) {
             var prevPage = document.getElementById('page-' + prevPageIndex);
             prevPage.classList.remove('flipped-up');
