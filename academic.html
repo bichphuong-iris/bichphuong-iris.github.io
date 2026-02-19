@@ -1,182 +1,178 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Academic Achievements</title>
+    <meta charset="UTF-8">
+    <title>Academic Archives</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Lấy font Lora và Archivo Black (thay cho Akzidenz) -->
+    <!-- Lấy font Shrikhand (Tiêu đề) và Lora (Nội dung) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Shrikhand&display=swap" rel="stylesheet">
     
-    <link rel="icon" href="images/avatar.jpg">
+    <link rel="icon" href="images/avt.JPG">
 
     <style>
-        /* --- CẤU HÌNH CHUNG --- */
-        html {
-            scroll-behavior: smooth; /* QUAN TRỌNG: Giúp lướt êm ru */
-        }
-        
+        /* --- 1. SETUP NỀN (Màu xám tối như trong ảnh bìa tạp chí) --- */
         body {
             margin: 0;
-            padding: 0;
+            padding: 40px 20px;
+            /* Nền texture giấy tối màu cho nổi mấy cái folder lên */
+            background-color: #2c2c2c;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
             font-family: 'Lora', serif;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        /* Class để chỉnh font tiêu đề đậm */
-        .heading-font {
-            font-family: 'Archivo Black', sans-serif;
-            text-transform: uppercase; /* Viết hoa hết */
+        /* Tiêu đề trang */
+        .page-title {
+            font-family: 'Shrikhand', cursive;
+            color: #f1f1f1;
+            font-size: 50px;
+            margin-bottom: 50px;
+            text-shadow: 4px 4px 0px #000;
+            letter-spacing: 2px;
         }
 
-        /* --- PHẦN 1: HERO SECTION (Ảnh bìa hồ nước) --- */
-        #hero {
-            height: 100vh; /* Cao full màn hình */
-            background-image: url("images/aca-hero.png"); /* Thay ảnh hồ nước */
-            background-size: cover;
-            background-position: center;
-            position: relative; /* Để căn chỉnh các thứ bên trong */
+        /* --- 2. CẤU TRÚC FOLDER (Hồ sơ) --- */
+        .folder-container {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
         }
 
-        /* Lớp phủ đen mờ để chữ nổi hơn */
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+        .folder {
+            position: relative;
+            margin-bottom: -30px; /* Để các folder xếp chồng lên nhau xíu */
+            transition: transform 0.3s ease;
         }
 
-        /* Logo tên bà góc trái trên */
-        .brand-name {
-            position: absolute;
-            top: 40px;
-            left: 50px;
-            color: white;
-            font-size: 24px;
-            line-height: 1.2;
-            z-index: 2;
-        }
-
-        /* Menu điều hướng (Góc phải) */
-        .nav-menu {
-            position: absolute;
-            top: 40px;
-            right: 50px;
-            background-color: rgba(255, 255, 255, 0.2); /* Nền kính trong suốt */
-            backdrop-filter: blur(10px); /* Hiệu ứng làm mờ kính */
-            padding: 15px 30px;
-            border-radius: 50px; /* Bo tròn viên thuốc */
+        /* Cái TAB (Phần tai hồ sơ để bấm vào) */
+        .folder-tab {
+            width: 100%;
+            padding: 25px 40px;
+            border-radius: 20px 20px 0 0; /* Bo tròn 2 góc trên */
+            cursor: pointer;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            position: relative;
             z-index: 2;
             display: flex;
-            gap: 30px;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
         }
 
-        .nav-menu a {
-            text-decoration: none;
-            color: white;
-            font-family: 'Archivo Black', sans-serif; /* Dùng font ngầu */
-            font-size: 16px;
+        .folder-tab:hover {
+            transform: translateY(-5px); /* Di chuột vào thì nảy lên */
+        }
+
+        /* Chữ trên Tab */
+        .tab-text {
+            font-family: 'Shrikhand', cursive;
+            font-size: 35px;
+            color: #2d3436;
             text-transform: uppercase;
-            transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: #d1fae5; /* Màu xanh nhạt khi di chuột */
+        /* Mũi tên chỉ xuống */
+        .toggle-icon {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3436;
+            transition: transform 0.3s;
         }
 
-        /* Chữ ACADEMIC to đùng */
-        .hero-title {
-            position: absolute;
-            bottom: 100px;
-            left: 50px;
-            color: white;
-            font-size: 100px; /* Siêu to khổng lồ */
-            z-index: 2;
-            margin: 0;
+        /* --- 3. NỘI DUNG BÊN TRONG (Tờ giấy trắng) --- */
+        .folder-content {
+            background-color: #fdfbf7; /* Màu giấy trắng ngà */
+            border-radius: 0 0 20px 20px;
+            padding: 0 40px;
+            max-height: 0; /* Mặc định đóng lại */
+            overflow: hidden; /* Giấu nội dung */
+            transition: max-height 0.6s ease-out, padding 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            /* Họa tiết dòng kẻ vở */
+            background-image: linear-gradient(#e5e5e5 1px, transparent 1px);
+            background-size: 100% 30px;
+        }
+        
+        /* Khi folder mở ra */
+        .folder.active .folder-content {
+            max-height: 800px; /* Đủ cao để chứa nội dung */
+            padding: 40px;
+            border-bottom: 10px solid; /* Viền đáy cùng màu folder */
+        }
+        
+        .folder.active .toggle-icon {
+            transform: rotate(180deg); /* Mũi tên xoay ngược lại */
         }
 
-        /* Nút quay lại trang chủ nhỏ xíu góc trái dưới */
-        .back-home {
-            position: absolute;
-            bottom: 30px;
-            left: 60px;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 14px;
-            z-index: 2;
-        }
+        /* --- 4. MÀU SẮC TỪNG FOLDER (Palette pastel) --- */
+        
+        /* CERTIFICATE (Xanh Mint) */
+        #cert .folder-tab { background-color: #A0C49D; } 
+        #cert.active .folder-content { border-bottom-color: #A0C49D; }
+        
+        /* GPA (Hồng Đất/Pastel) */
+        #gpa .folder-tab { background-color: #E1B0AC; }
+        #gpa.active .folder-content { border-bottom-color: #E1B0AC; }
+        
+        /* RESEARCH (Xanh Blue) */
+        #res .folder-tab { background-color: #94B4C5; }
+        #res.active .folder-content { border-bottom-color: #94B4C5; }
 
-        /* --- PHẦN 2: STYLE CHUNG CHO CÁC MỤC DƯỚI --- */
-        section {
-            padding: 80px 20px;
-            text-align: center;
+        /* --- 5. TRANG TRÍ NỘI DUNG --- */
+        .content-flex {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
-
-        .section-title {
-            font-size: 50px;
-            color: #2f4f2f; /* Màu xanh rêu đậm */
-            margin-bottom: 30px;
-        }
-
-        /* Cái ảnh hình viên thuốc dài */
-        .pill-image {
+        .text-side { flex: 1; background: white; padding: 20px; border: 1px dashed #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); transform: rotate(-1deg); }
+        .img-side { width: 40%; text-align: center; }
+        .polaroid-img {
             width: 100%;
-            max-width: 900px; /* Độ rộng tối đa */
-            height: 250px; /* Chiều cao cố định */
-            object-fit: cover;
-            border-radius: 100px; /* Bo tròn cực mạnh */
-            margin: 0 auto 40px auto;
-            display: block;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            transform: rotate(3deg);
         }
 
-        /* Đường kẻ ngang */
-        .divider {
-            width: 80%;
-            max-width: 900px;
-            height: 3px;
-            background-color: #6b8e23; /* Màu xanh olive */
-            margin: 0 auto 40px auto;
+        /* --- 6. CÁI KẸP GIẤY (CSS PURE) --- */
+        .paper-clip {
+            position: absolute;
+            top: -20px;
+            right: 100px;
+            width: 30px;
+            height: 70px;
+            border: 4px solid #555;
+            border-radius: 20px;
+            z-index: 10;
+            opacity: 0.8;
+        }
+        .paper-clip::before {
+            content: '';
+            position: absolute;
+            top: 10px; left: 6px;
+            width: 10px; height: 50px;
+            border: 4px solid #555;
+            border-radius: 10px;
+            border-top: none;
         }
 
-       /* Thay đoạn .content-text cũ bằng đoạn này nha */
-        .content-text {
-            font-size: 20px;
-            width: fit-content; /* QUAN TRỌNG: Cái này ép cái khung co lại vừa khít với dòng chữ */
-            margin: 0 auto;     /* Cái này bê nguyên cái khung ra giữa màn hình */
-            text-align: left;   /* Cái này căn trái chữ bên trong */
-            padding: 0 20px;    /* Cách lề tí cho thoáng */
-        }
-        
-        /* Thêm cái này để chỉnh mấy cái gạch đầu dòng cho đẹp */
-        .content-text ul {
-            padding-left: 20px; /* Thụt vào xíu */
-            margin: 0;
-        }
-        
-        .content-text li {
-            margin-bottom: 10px; /* Các dòng cách nhau ra tí cho dễ thở */
-        }
-
-        /* --- PHẦN 3: STYLE RIÊNG TỪNG MỤC (Cho khác bọt) --- */
-        
-        /* Mục Certificate: Nền trắng, chữ xanh */
-        #certificate {
-            background-color: white;
-        }
-
-        /* Mục GPA: Nền xanh đậm, chữ trắng (Giống ảnh 3) */
-        #gpa {
-            background-color: #0b301a; /* Xanh đậm */
+        /* Nút quay về */
+        .back-home {
+            position: fixed;
+            top: 20px; left: 20px;
             color: white;
-        }
-        #gpa .section-title { color: white; } /* Tiêu đề trắng */
-        #gpa .divider { background-color: white; } /* Kẻ ngang trắng */
-
-        /* Mục Research: Nền trắng lại */
-        #research {
-            background-color: white;
+            text-decoration: none;
+            font-weight: bold;
+            opacity: 0.7;
         }
 
     </style>
@@ -184,82 +180,109 @@
 
 <body>
 
-    <!-- PHẦN 1: HERO SECTION (Màn hình đầu tiên) -->
-    <div id="hero">
-        <div class="overlay"></div> <!-- Lớp phủ tối -->
+    <a href="index.html" class="back-home">← Home</a>
+
+    <!-- Tiêu đề lớn -->
+    <div class="page-title">ACADEMIC ARCHIVES</div>
+
+    <div class="folder-container">
         
-        <!-- Logo -->
-        <div class="brand-name heading-font">
-            BUI BICH<br>PHUONG
+        <!-- FOLDER 1: CERTIFICATE (Màu Mint) -->
+        <div class="folder" id="cert" onclick="toggleFolder('cert')">
+            <div class="folder-tab">
+                <span class="tab-text">Certificate</span>
+                <span class="toggle-icon">▼</span>
+                <!-- Decor cái kẹp giấy giả trân ở folder đầu -->
+                <div class="paper-clip"></div> 
+            </div>
+            
+            <div class="folder-content">
+                <div class="content-flex">
+                    <div class="img-side">
+                        <!-- Nhớ thay ảnh đúng nha: aca-cert.jpg -->
+                        <img src="images/aca-cert.png" class="polaroid-img">
+                    </div>
+                    <div class="text-side">
+                        <h2 style="font-family: 'Shrikhand'; margin: 0; color: #5aa469;">International Certificates</h2>
+                        <ul style="padding-left: 20px; line-height: 2;">
+                            <li><b>IELTS 8.0 (Reading 9.0, Listening 8.5, Speaking 7.0, Writing 7.0)</li>
+                            <li><b>MOS Expert Word 365 Apps - Score: 960/1000</li>
+                            <li><b>MOS Expert Excel 365 Apps - Score: 980/1000</li>
+                            <li><b>MOS Expert PowerPoint 365 Apps - Score: 978/1000</li>
+                            <li><b>MOS Expert Word 365 Apps Specialist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Menu điều hướng (Bấm cái nó trượt xuống dưới) -->
-        <div class="nav-menu">
-            <a href="#certificate">Certificate</a>
-            <a href="#gpa">GPA</a>
-            <a href="#research">Research</a>
+        <!-- FOLDER 2: GPA (Màu Hồng) -->
+        <div class="folder" id="gpa" onclick="toggleFolder('gpa')">
+            <div class="folder-tab">
+                <span class="tab-text">GPA & Awards</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            
+            <div class="folder-content">
+                <div class="content-flex" style="flex-direction: row-reverse;"> <!-- Đảo ngược vị trí cho lạ -->
+                    <div class="img-side">
+                         <!-- Nhớ thay ảnh: aca-gpa.jpg -->
+                        <img src="images/aca-gpa.png" class="polaroid-img" style="transform: rotate(-3deg);">
+                    </div>
+                    <div class="text-side" style="transform: rotate(1deg);">
+                        <h2 style="font-family: 'Shrikhand'; margin: 0; color: #d67d76;">University Journey</h2>
+                        <p style="font-size: 40px; font-weight: bold; margin: 10px 0; color: #d63031;">3.8 / 4.0</p>
+                        <p><b>Major:</b> International Business</p>
+                        <li><b>✨ Cumulative GPA [until 1st semester of 2nd year]: 3.895/4.0</li>
+                        <li><b>✨ Encouragement Scholarship for Student - Semester 1 (2024-2025)</li>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Tiêu đề to -->
-        <h1 class="hero-title heading-font">ACADEMIC</h1>
+        <!-- FOLDER 3: RESEARCH (Màu Xanh) -->
+        <div class="folder" id="res" onclick="toggleFolder('res')">
+            <div class="folder-tab">
+                <span class="tab-text">Scientific Research</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            
+            <div class="folder-content">
+                <div style="text-align: center; padding: 20px;">
+                    <h2 style="font-family: 'Shrikhand'; color: #548ca8;">Loading Future...</h2>
+                    
+                    <img src="images/aca-res.png" style="width: 200px; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 20px 0;">
+                    
+                    <p style="font-style: italic; max-width: 600px; margin: 0 auto;">
+                        "Scientific research is seeing what everyone else has seen, but thinking what no one else has thought." <br>
+                        (Coming soon in 2026 - Stay tuned!)
+                    </p>
+                </div>
+            </div>
+        </div>
 
-        <!-- Link về Home -->
-        <a href="index.html" class="back-home">← Back to Index</a>
     </div>
 
-    <!-- PHẦN 2: CERTIFICATE (Giao diện trắng) -->
-    <section id="certificate">
-        <h2 class="section-title heading-font">CERTIFICATE</h2>
-        
-        <!-- Ảnh viên thuốc lá dương xỉ -->
-        <img src="images/aca-cert.png" class="pill-image">
-        
-        <div class="divider"></div>
-        
-        <!-- Sửa lại phần nội dung của Certificate nha -->
-        <div class="content-text">
-            <ul>
-                <li>IELTS 8.0 (Reading 9.0, Listening 8.5, Speaking 7.0, Writing 7.0)</li>
-                <li>MOS Expert Word 365 Apps - Score: 960/1000</li>
-                <li>MOS Expert Excel 365 Apps - Score: 980/1000</li>
-                <li>MOS Expert PowerPoint 365 Apps - Score: 978/1000</li>
-                <li>MOS Expert Word 365 Apps Specialist</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- PHẦN 3: GPA (Giao diện nền xanh đậm) -->
-    <section id="gpa">
-        <h2 class="section-title heading-font">GPA</h2>
-        
-        <!-- Ảnh viên thuốc đồi núi -->
-        <img src="images/aca-gpa.png" class="pill-image">
-        
-        <div class="divider"></div>
-        
-        <div class="content-text">
-          <ul>
-            <li>Cumulative GPA [until 1st semester of 2nd year]: 3.895/4.0</li>
-            <li>Encouragement Scholarship for Student - Semester 1 (2024-2025)</li>
-            <li>Major: International Business</li>
-          </ul>
-        </div>
-    </section>
-
-    <!-- PHẦN 4: RESEARCH (Giao diện trắng) -->
-    <section id="research">
-        <h2 class="section-title heading-font">RESEARCH</h2>
-        
-        <!-- Ảnh viên thuốc dương xỉ tiếp -->
-        <img src="images/aca-res.png" class="pill-image">
-        
-        <div class="divider"></div>
-        
-        <div class="content-text">
-            <p style="font-style: italic; color: #666;">Not yet...</p>
-            <p>(Coming soon in 2026)</p>
-        </div>
-    </section>
+    <!-- Script đóng mở Folder -->
+    <script>
+        function toggleFolder(id) {
+            var folder = document.getElementById(id);
+            
+            // Nếu nó đang mở (có class active) thì đóng lại
+            if (folder.classList.contains('active')) {
+                folder.classList.remove('active');
+            } 
+            // Nếu đang đóng thì mở ra (và đóng mấy cái khác lại cho gọn)
+            else {
+                // Đóng hết các folder khác trước
+                var allFolders = document.querySelectorAll('.folder');
+                allFolders.forEach(f => f.classList.remove('active'));
+                
+                // Mở folder được bấm
+                folder.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>

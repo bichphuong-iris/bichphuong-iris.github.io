@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Academic Achievements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Lấy font Lora và Archivo Black (thay cho Akzidenz) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="images/avatar.jpg">
+
+    <style>
+        /* --- CẤU HÌNH CHUNG --- */
+        html {
+            scroll-behavior: smooth; /* QUAN TRỌNG: Giúp lướt êm ru */
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            color: #333;
+        }
+
+        /* Class để chỉnh font tiêu đề đậm */
+        .heading-font {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase; /* Viết hoa hết */
+        }
+
+        /* --- PHẦN 1: HERO SECTION (Ảnh bìa hồ nước) --- */
+        #hero {
+            height: 100vh; /* Cao full màn hình */
+            background-image: url("images/aca-hero.png"); /* Thay ảnh hồ nước */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Để căn chỉnh các thứ bên trong */
+        }
+
+        /* Lớp phủ đen mờ để chữ nổi hơn */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+        }
+
+        /* Logo tên bà góc trái trên */
+        .brand-name {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            color: white;
+            font-size: 24px;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        /* Menu điều hướng (Góc phải) */
+        .nav-menu {
+            position: absolute;
+            top: 40px;
+            right: 50px;
+            background-color: rgba(255, 255, 255, 0.2); /* Nền kính trong suốt */
+            backdrop-filter: blur(10px); /* Hiệu ứng làm mờ kính */
+            padding: 15px 30px;
+            border-radius: 50px; /* Bo tròn viên thuốc */
+            z-index: 2;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: white;
+            font-family: 'Archivo Black', sans-serif; /* Dùng font ngầu */
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #d1fae5; /* Màu xanh nhạt khi di chuột */
+        }
+
+        /* Chữ ACADEMIC to đùng */
+        .hero-title {
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            color: white;
+            font-size: 100px; /* Siêu to khổng lồ */
+            z-index: 2;
+            margin: 0;
+        }
+
+        /* Nút quay lại trang chủ nhỏ xíu góc trái dưới */
+        .back-home {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        /* --- PHẦN 2: STYLE CHUNG CHO CÁC MỤC DƯỚI --- */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 50px;
+            color: #2f4f2f; /* Màu xanh rêu đậm */
+            margin-bottom: 30px;
+        }
+
+        /* Cái ảnh hình viên thuốc dài */
+        .pill-image {
+            width: 100%;
+            max-width: 900px; /* Độ rộng tối đa */
+            height: 250px; /* Chiều cao cố định */
+            object-fit: cover;
+            border-radius: 100px; /* Bo tròn cực mạnh */
+            margin: 0 auto 40px auto;
+            display: block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Đường kẻ ngang */
+        .divider {
+            width: 80%;
+            max-width: 900px;
+            height: 3px;
+            background-color: #6b8e23; /* Màu xanh olive */
+            margin: 0 auto 40px auto;
+        }
+
+       /* Thay đoạn .content-text cũ bằng đoạn này nha */
+        .content-text {
+            font-size: 20px;
+            width: fit-content; /* QUAN TRỌNG: Cái này ép cái khung co lại vừa khít với dòng chữ */
+            margin: 0 auto;     /* Cái này bê nguyên cái khung ra giữa màn hình */
+            text-align: left;   /* Cái này căn trái chữ bên trong */
+            padding: 0 20px;    /* Cách lề tí cho thoáng */
+        }
+        
+        /* Thêm cái này để chỉnh mấy cái gạch đầu dòng cho đẹp */
+        .content-text ul {
+            padding-left: 20px; /* Thụt vào xíu */
+            margin: 0;
+        }
+        
+        .content-text li {
+            margin-bottom: 10px; /* Các dòng cách nhau ra tí cho dễ thở */
+        }
+
+        /* --- PHẦN 3: STYLE RIÊNG TỪNG MỤC (Cho khác bọt) --- */
+        
+        /* Mục Certificate: Nền trắng, chữ xanh */
+        #certificate {
+            background-color: white;
+        }
+
+        /* Mục GPA: Nền xanh đậm, chữ trắng (Giống ảnh 3) */
+        #gpa {
+            background-color: #0b301a; /* Xanh đậm */
+            color: white;
+        }
+        #gpa .section-title { color: white; } /* Tiêu đề trắng */
+        #gpa .divider { background-color: white; } /* Kẻ ngang trắng */
+
+        /* Mục Research: Nền trắng lại */
+        #research {
+            background-color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- PHẦN 1: HERO SECTION (Màn hình đầu tiên) -->
+    <div id="hero">
+        <div class="overlay"></div> <!-- Lớp phủ tối -->
+        
+        <!-- Logo -->
+        <div class="brand-name heading-font">
+            BUI BICH<br>PHUONG
+        </div>
+
+        <!-- Menu điều hướng (Bấm cái nó trượt xuống dưới) -->
+        <div class="nav-menu">
+            <a href="#certificate">Certificate</a>
+            <a href="#gpa">GPA</a>
+            <a href="#research">Research</a>
+        </div>
+
+        <!-- Tiêu đề to -->
+        <h1 class="hero-title heading-font">ACADEMIC</h1>
+
+        <!-- Link về Home -->
+        <a href="index.html" class="back-home">← Back to Index</a>
+    </div>
+
+    <!-- PHẦN 2: CERTIFICATE (Giao diện trắng) -->
+    <section id="certificate">
+        <h2 class="section-title heading-font">CERTIFICATE</h2>
+        
+        <!-- Ảnh viên thuốc lá dương xỉ -->
+        <img src="images/aca-cert.png" class="pill-image">
+        
+        <div class="divider"></div>
+        
+        <!-- Sửa lại phần nội dung của Certificate nha -->
+        <div class="content-text">
+            <ul>
+                <li>IELTS 8.0 (Reading 9.0, Listening 8.5, Speaking 7.0, Writing 7.0)</li>
+                <li>MOS Expert Word 365 Apps - Score: 960/1000</li>
+                <li>MOS Expert Excel 365 Apps - Score: 980/1000</li>
+                <li>MOS Expert PowerPoint 365 Apps - Score: 978/1000</li>
+                <li>MOS Expert Word 365 Apps Specialist</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PHẦN 3: GPA (Giao diện nền xanh đậm) -->
+    <section id="gpa">
+        <h2 class="section-title heading-font">GPA</h2>
+        
+        <!-- Ảnh viên thuốc đồi núi -->
+        <img src="images/aca-gpa.png" class="pill-image">
+        
+        <div class="divider"></div>
+        
+        <div class="content-text">
+          <ul>
+            <li>Cumulative GPA [until 1st semester of 2nd year]: 3.895/4.0</li>
+            <li>Encouragement Scholarship for Student - Semester 1 (2024-2025)</li>
+            <li>Major: International Business</li>
+          </ul>
+        </div>
+    </section>
+
+    <!-- PHẦN 4: RESEARCH (Giao diện trắng) -->
+    <section id="research">
+        <h2 class="section-title heading-font">RESEARCH</h2>
+        
+        <!-- Ảnh viên thuốc dương xỉ tiếp -->
+        <img src="images/aca-res.png" class="pill-image">
+        
+        <div class="divider"></div>
+        
+        <div class="content-text">
+            <p style="font-style: italic; color: #666;">Not yet...</p>
+            <p>(Coming soon in 2026)</p>
+        </div>
+    </section>
+
+</body>
+</html>
