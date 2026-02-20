@@ -79,51 +79,30 @@
         }
 
         /* --- 5. TYPOGRAPHY --- */
+        /* Bà tìm đoạn này trong thẻ <style> nha */
+        
         h1, h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Shrikhand', cursive; /* <--- SỬA DÒNG NÀY (Cũ là Playfair Display) */
             color: #2c3e50;
             margin: 0;
+            font-weight: normal; /* Font này nó đậm sẵn rồi, thêm cái này cho nó đỡ bị gắt */
         }
 
-        h1 { 
-            font-size: 80px; /* Chữ to hơn */
-            text-align: center; 
-            margin-top: 80px; 
-            letter-spacing: 2px;
-            font-style: italic;
-            line-height: 1.2;
-        }
-        
-        h2 { 
-            font-size: 48px; 
-            margin-bottom: 10px; 
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 8px; left: 0;
-            width: 100%; height: 12px;
-            background-color: rgba(149, 175, 192, 0.3);
-            z-index: -1;
-        }
-
-        p { 
-            font-size: 19px; /* Chữ to lên cho dễ đọc */
-            line-height: 1.8; 
-            color: #555; 
-            margin-bottom: 25px;
-        }
-        
+        /* Sửa luôn cái dòng chữ nhỏ bên dưới tiêu đề cho nó đồng bộ nếu thích, không thì thôi */
         .italic-sub {
-            font-style: italic;
+            font-family: 'Shrikhand', cursive; /* Thích thì đổi luôn cái này */
             color: #7f8c8d;
-            font-size: 20px;
+            font-size: 18px; /* Tăng size lên xíu cho dễ đọc vì font này hơi nhỏ */
             margin-top: -10px;
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+            /* font-style: italic; <--- Font Shrikhand nó nghiêng sẵn rồi, bỏ dòng này đi cũng được */
+        }
+        
+        /* Sửa luôn nút bấm cho nó nghệ */
+        .nav-control {
+            /* ... code cũ ... */
+            font-family: 'Shrikhand', cursive; /* <--- Đổi luôn cái này cho xịn */
+            /* ... code cũ ... */
         }
 
         /* --- 6. LAYOUT ẢNH --- */
