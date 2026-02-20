@@ -13,10 +13,10 @@
     <link rel="icon" href="images/avt.JPG">
 
     <style>
-        /* --- 1. NỀN CHUNG --- */
+        /* --- 1. CẤU HÌNH CHUNG --- */
         body {
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
             background-color: #f0f0f2;
             font-family: 'Lora', serif;
             display: flex;
@@ -27,69 +27,72 @@
         }
 
         .back-home {
-            position: absolute;
+            position: fixed;
             top: 20px; left: 30px;
             text-decoration: none;
             color: #555;
             font-size: 14px;
-            font-family: 'Lora', serif;
             font-weight: bold;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        /* --- 2. HEADER (CHỈNH SỬA: Đẩy text ra giữa, không bị che) --- */
-        .header-container {
+        /* --- 2. HEADER MỚI (CHIA KHU VỰC ĐỂ KHÔNG BỊ CHE) --- */
+        .header-wrapper {
             width: 100%;
             max-width: 1100px;
+            display: flex; /* Dùng Flexbox để chia đôi */
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 30px;
+            margin-bottom: 60px; /* Cách xa phần folder ở dưới ra */
             position: relative;
-            margin-bottom: 80px; /* ĐẨY CÁCH XA PHẦN FOLDER RA */
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        }
+
+        /* Khu vực Chữ (Bên trái và Giữa) */
+        .title-area {
+            flex: 1; /* Chiếm phần lớn diện tích */
+            text-align: center;
+            padding-top: 20px;
         }
 
         .main-title {
             font-family: 'Shrikhand', cursive;
-            font-size: 60px;
+            font-size: 55px; /* Giảm xíu cho vừa dòng */
             color: #8B3A3A;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 
-                2px 2px 0px #fff, 
-                -1px -1px 0 #fff,  
-                4px 4px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            /* Đẩy sang trái một chút để chừa chỗ cho ảnh */
-            margin-right: 180px; 
-            text-align: center;
+            text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.2);
+            margin: 0;
+            display: inline-block;
         }
 
-        .header-decor {
-            position: absolute;
-            top: 20px;
-            right: 50px; /* Dịch sát phải */
-            z-index: 5;
+        /* Khu vực Ảnh Decor (Bên phải riêng biệt) */
+        .decor-area {
+            width: 250px; /* Dành riêng 1 góc cho nó */
+            position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            transform: rotate(3deg);
+            margin-top: -10px;
         }
 
+        /* Note Decor */
         .paper-note-decor {
             background-color: #ead1d1;
-            padding: 12px 25px;
+            padding: 8px 15px;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
             font-family: 'Shrikhand', cursive;
-            font-size: 14px;
+            font-size: 12px;
             color: #333;
-            margin-right: -25px;
+            transform: rotate(-3deg);
             z-index: 6;
-            white-space: nowrap;
+            margin-bottom: -15px; /* Đè lên ảnh tí */
         }
 
+        /* Ảnh Polariod */
         .my-polaroid-small {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
             border: 5px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -98,141 +101,145 @@
             z-index: 5;
         }
 
-
-        /* --- 3. HỆ THỐNG FOLDER STACK (QUAN TRỌNG: SỬA Z-INDEX) --- */
+        /* --- 3. HỆ THỐNG STACK --- */
         .stack-container {
             width: 100%;
-            max-width: 950px;
+            max-width: 900px;
             position: relative;
             padding-bottom: 100px;
-            /* Margin top để đẩy nguyên cục này xuống dưới */
-            margin-top: 20px; 
         }
 
         .folder-wrapper {
             position: relative;
             width: 100%;
-            /* Logic xếp chồng mới: Dịch lên trên để che phần đáy của folder trước */
-            margin-top: -60px; 
+            margin-bottom: -20px; /* Xếp chồng nhẹ */
             transition: all 0.5s ease;
         }
-        
-        /* Folder đầu tiên không cần dịch lên */
-        #folder-cert { margin-top: 0; }
 
-        /* Khi mở ra */
+        /* Khi bấm mở */
         .folder-wrapper.active {
-            margin-top: 20px; /* Tách ra */
+            margin-top: 20px;
             margin-bottom: 20px;
-            z-index: 50 !important; /* Luôn nổi lên trên cùng khi mở */
+            z-index: 100 !important; /* Luôn nổi lên trên cùng */
         }
 
+        /* --- 4. BÌA FOLDER --- */
         .folder-cover {
             position: relative;
-            width: 100%;
-            z-index: 2;
             cursor: pointer;
             transition: transform 0.3s;
+            z-index: 2;
         }
-        .folder-cover:hover { transform: translateY(-5px); }
+        .folder-cover:hover { transform: translateY(-3px); }
 
         .folder-tab {
-            height: 60px;
-            border-radius: 20px 20px 0 0;
+            height: 50px;
+            border-radius: 15px 15px 0 0;
             display: inline-flex;
             align-items: center;
-            padding: 0 50px;
+            padding: 0 40px;
             position: relative;
         }
-        
-        /* Định dạng chữ tiêu đề Folder */
+
         .folder-tab h2 {
             font-family: 'Lora', serif;
             font-weight: 700;
-            font-size: 28px;
-            color: #0b3d20;
+            font-size: 24px;
+            color: #0b3d20; /* Xanh rêu đậm */
             text-transform: uppercase;
             margin: 0;
-            letter-spacing: 1px;
         }
 
+        /* Thân folder */
         .folder-body {
             width: 100%;
-            height: 100px; /* Thân ngắn lại để nhìn thấy folder sau */
-            border-radius: 0 20px 20px 20px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-            position: relative;
+            height: 60px; /* Thân ngắn để lộ folder sau */
+            border-radius: 0 15px 0 0;
+            /* Nếu tab bên trái thì bo góc này, lát chỉnh riêng */
         }
 
-        /* --- 4. GIẤY NỘI DUNG --- */
-        .paper-content {
+        /* --- 5. WHITE STRIP (Dải giấy trắng thò ra - MỚI NÈ!) --- */
+        .white-strip {
+            height: 35px;
             background-color: #fdfdfd;
-            width: 96%;
+            width: 98%;
             margin: 0 auto;
             border-radius: 0 0 15px 15px;
+            position: relative;
+            top: -2px; /* Dính liền với body folder */
+            z-index: 1; /* Nằm dưới folder body */
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- 6. NỘI DUNG KHI MỞ --- */
+        .paper-content {
+            background-color: #fdfdfd;
+            width: 98%;
+            margin: 0 auto;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.8s ease-out, padding 0.5s;
+            border-radius: 0 0 15px 15px;
             position: relative;
-            z-index: 1;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            top: -5px;
         }
-        
         .folder-wrapper.active .paper-content {
             max-height: 1200px;
-            padding: 50px 40px;
+            padding: 40px;
             border: 1px solid #ccc;
+            border-top: none;
         }
 
-        /* --- 5. LOGIC XẾP LỚP (Z-INDEX) MỚI --- */
+        /* --- 7. CHỈNH TỪNG CÁI (Z-INDEX VÀ MÀU) --- */
 
-        /* LỚP 1: CERTIFICATE (XANH LÁ) - NẰM DƯỚI CÙNG */
-        #folder-cert { z-index: 1; }
-        .bg-green { background-color: #A9Cbb7; } 
-
-        /* LỚP 2: GPA (HỒNG) - NẰM GIỮA */
-        #folder-gpa { z-index: 2; } 
-        .bg-pink { background-color: #dfbdbd; } 
+        /* Lớp 1 (Dưới cùng): CERTIFICATE */
+        #folder-cert { z-index: 1; margin-bottom: -35px; } /* Đẩy âm lên */
+        .bg-green { background-color: #A9Cbb7; }
         
-        /* Tab GPA lệch phải */
-        #folder-gpa .folder-tab {
-            margin-left: auto; margin-right: 0;
-            border-radius: 20px 20px 0 0;
+        #folder-cert .folder-body { border-radius: 0 15px 0 0; }
+
+        /* Lớp 2 (Giữa): GPA */
+        #folder-gpa { z-index: 2; margin-bottom: -35px; }
+        .bg-pink { background-color: #dfbdbd; }
+        
+        #folder-gpa .folder-tab { 
+            margin-left: auto; margin-right: 0; /* Tab phải */
             flex-direction: row-reverse;
         }
-        #folder-gpa .folder-body { border-radius: 20px 0 20px 20px; }
+        #folder-gpa .folder-body { border-radius: 15px 0 0 0; } /* Bo góc ngược lại */
 
-        /* LỚP 3: RESEARCH (XANH DƯƠNG) - NẰM TRÊN CÙNG */
+        /* Lớp 3 (Trên cùng): RESEARCH */
         #folder-res { z-index: 3; }
         .bg-blue { background-color: #9dbcd4; }
         
-        /* Body Research to đùng làm đế */
-        #folder-res .folder-body { height: 350px; } 
+        /* Riêng cái cuối body phải to để chứa barcode */
+        #folder-res .folder-body { height: 280px; border-radius: 0 15px 15px 15px; }
+        #folder-res .white-strip { display: none; } /* Cái cuối không cần giấy trắng thò ra nữa */
 
 
-        /* --- 6. DECOR (Ảnh chèn vào) --- */
+        /* --- 8. DECOR VẬT DỤNG (ĐÃ SỬA VỊ TRÍ) --- */
 
-        /* Băng Cassette: Kẹp giữa lớp 2 và 3 */
+        /* Cassette Tape (Giờ kẹp bên trái cho đỡ trống) */
         .cassette-decor {
             position: absolute;
             width: 140px;
-            top: -50px; /* Thò lên khỏi folder xanh dương */
-            left: 180px;
-            z-index: 3; /* Nằm trên GPA nhưng dưới Research body khi đóng? -> Để z-index cao chút */
-            transform: rotate(-8deg);
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            top: -30px; /* Thò lên */
+            left: 20px; /* Kẹp góc trái */
+            z-index: 5; 
+            transform: rotate(-10deg);
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
         }
 
         .black-clip {
             position: absolute;
-            top: -35px; right: 120px;
-            width: 60px;
+            top: -35px; right: 80px; /* Dịch vào trong xíu */
+            width: 55px;
             z-index: 20;
         }
 
         .barcode {
             position: absolute;
-            bottom: 30px; left: 50px;
+            bottom: 30px; left: 40px;
             width: 130px;
             opacity: 0.8;
             mix-blend-mode: multiply;
@@ -240,28 +247,20 @@
         
         .copyright {
             position: absolute;
-            bottom: 50px; right: 50px;
+            bottom: 40px; right: 40px;
             text-align: right;
             font-size: 16px;
             font-weight: bold;
             color: #333;
         }
 
-        /* --- 7. BỐ CỤC NỘI DUNG --- */
+        /* --- 9. BỐ CỤC NỘI DUNG --- */
         .content-flex { display: flex; gap: 40px; align-items: flex-start; }
-        .content-left { width: 35%; }
-        .content-right { width: 65%; }
-        
         .polaroid-style {
             background: white; padding: 10px 10px 40px 10px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-            transform: rotate(-2deg);
-            width: 100%;
+            transform: rotate(-2deg); width: 100%;
         }
-
-        h3 { font-family: 'Shrikhand'; font-size: 28px; margin-top: 0; }
-        ul li { margin-bottom: 12px; font-size: 18px; }
-
     </style>
 </head>
 
@@ -269,36 +268,36 @@
 
     <a href="index.html" class="back-home">← Home</a>
 
-    <!-- HEADER: TITLE + DECOR -->
-    <div class="header-container">
-        <h1 class="main-title">ACADEMIC ARCHIVES</h1>
+    <!-- HEADER MỚI (Flexbox chia 2 bên - Không bao giờ che nhau) -->
+    <div class="header-wrapper">
+        <div class="title-area">
+            <h1 class="main-title">ACADEMIC ARCHIVES</h1>
+        </div>
         
-        <div class="header-decor">
+        <div class="decor-area">
             <div class="paper-note-decor">THIS IS MY ACADEMIC ARCHIVES</div>
-            <img src="images/exp.png" class="my-polaroid-small">
+            <img src="images/avt.JPG" class="my-polaroid-small">
         </div>
     </div>
 
     <!-- HỆ THỐNG FOLDER -->
     <div class="stack-container">
         
-        <!-- === LỚP 1 (DƯỚI CÙNG): CERTIFICATE === -->
+        <!-- FOLDER 1 (DƯỚI CÙNG): CERTIFICATE -->
         <div class="folder-wrapper" id="folder-cert">
             <div class="folder-cover" onclick="toggleFolder('folder-cert')">
-                <div class="folder-tab bg-green" style="width: 45%;">
-                    <h2>CERTIFICATE</h2> <!-- Tên hiển thị rõ ràng -->
-                </div>
+                <div class="folder-tab bg-green" style="width: 45%;"><h2>CERTIFICATE</h2></div>
                 <div class="folder-body bg-green"></div>
             </div>
+            <!-- Dải giấy trắng thò ra -->
+            <div class="white-strip"></div> 
             
             <div class="paper-content">
                 <div class="content-flex">
-                    <div class="content-left">
-                        <img src="images/aca-cert.png" class="polaroid-style">
-                    </div>
-                    <div class="content-right">
+                    <div style="width:30%"><img src="images/aca-cert.png" class="polaroid-style"></div>
+                    <div style="width:70%">
                         <h3>International Certificates</h3>
-                        <ul>
+                        <ul style="font-size:18px; line-height:2">
                           <li><b>IELTS 8.0</b> (R:8.5, L:8.5, S:7.5, W:7.0)</li>
                             <li><b>MOS Expert Word</b> - Score: 960/1000</li>
                             <li><b>MOS Expert Excel</b> - Score: 980/1000</li>
@@ -310,25 +309,25 @@
             </div>
         </div>
 
-
-        <!-- === LỚP 2 (GIỮA): GPA === -->
+        <!-- FOLDER 2 (GIỮA): GPA -->
         <div class="folder-wrapper" id="folder-gpa">
+            
+            <!-- CASSETTE TAPE (Chèn ở đây, dùng ảnh Online để test, nhớ thay bằng tape.png nha) -->
+            <img src="https://purepng.com/public/uploads/large/purepng.com-cassette-tapecassette-tapecassettecassettemusic-tapeaudio-1701528399589dcv6x.png" class="cassette-decor">
+
             <div class="folder-cover" onclick="toggleFolder('folder-gpa')">
-                <!-- Tab nằm bên phải -->
-                <div class="folder-tab bg-pink" style="width: 45%;">
-                    <h2>GPA</h2> <!-- Tên hiển thị rõ ràng -->
-                </div>
+                <div class="folder-tab bg-pink" style="width: 45%;"><h2>GPA</h2></div>
                 <div class="folder-body bg-pink"></div>
             </div>
-            
+            <!-- Dải giấy trắng thò ra -->
+            <div class="white-strip"></div>
+
             <div class="paper-content">
                 <div class="content-flex" style="flex-direction: row-reverse;">
-                    <div class="content-left">
-                         <img src="images/aca-gpa.png" class="polaroid-style" style="transform: rotate(2deg);">
-                    </div>
-                    <div class="content-right" style="text-align: right;">
+                    <div style="width:30%"><img src="images/aca-gpa.png" class="polaroid-style" style="transform: rotate(2deg);"></div>
+                    <div style="width:70%; text-align:right">
                         <h3>University Journey</h3>
-                        <p style="font-size: 50px; font-weight: bold; color: #b76e79;">3.89 / 4.0</p>
+                        <p style="font-size: 40px; color: #b76e79;"><b>3.89 / 4.0</b></p>
                         <li><b>✨ Cumulative GPA: 3.895/4.0</b> (until 2nd year)</li>
                         <li>✨ Encouragement Scholarship - Semester 1 (2024-2025)</li>
                     </div>
@@ -336,39 +335,25 @@
             </div>
         </div>
 
-
-        <!-- === LỚP 3 (TRÊN CÙNG): RESEARCH === -->
+        <!-- FOLDER 3 (TRÊN CÙNG): RESEARCH -->
         <div class="folder-wrapper" id="folder-res">
-            
-            <!-- Đặt decor ở folder trên cùng để không bị che -->
-            
-            <!-- Cassette: Kẹp lên mép folder xanh -->
-            <img src="images/tape.jpg" class="cassette-decor">
-
             <div class="folder-cover" onclick="toggleFolder('folder-res')">
-                <div class="folder-tab bg-blue" style="width: 50%;">
-                    <h2>SCIENTIFIC RESEARCH</h2> <!-- Tên hiển thị rõ ràng -->
-                </div>
-                
+                <div class="folder-tab bg-blue" style="width: 50%;"><h2>SCIENTIFIC RESEARCH</h2></div>
                 <div class="folder-body bg-blue">
-                    <!-- Decor Kẹp ghim -->
-                    <img src="images/pin.jpg" class="black-clip" style="filter: brightness(0.2);">
-
-                    <!-- Decor Barcode -->
+                    <!-- KẸP GHIM ĐEN -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/725/725109.png" class="black-clip" style="filter: brightness(0.2);">
+                    <!-- BARCODE -->
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/EAN13.svg/1200px-EAN13.svg.png" class="barcode">
-
-                    <!-- Copyright -->
-                    <div class="copyright">
-                        <div>@anirregular.iris</div>
-                        <div style="font-size: 14px; font-weight: normal;">copyright by meeeee</div>
-                    </div>
+                    <!-- COPYRIGHT -->
+                    <div class="copyright">@anirregular.iris<br><small>copyright by meeeee</small></div>
                 </div>
             </div>
+            <!-- Folder cuối không cần white strip -->
             
             <div class="paper-content">
                 <div style="text-align: center;">
                     <h3>Loading Future...</h3>
-                    <img src="images/aca-res.png" style="width: 150px; border-radius: 50%; margin: 20px;">
+                    <img src="images/aca-res.png" style="width: 150px; border-radius: 50%;">
                     <p>(Coming soon in 2026)</p>
                 </div>
             </div>
@@ -376,19 +361,12 @@
 
     </div>
 
-    <!-- Script điều khiển -->
     <script>
         function toggleFolder(id) {
             var folder = document.getElementById(id);
             var wasActive = folder.classList.contains('active');
-
-            // Đóng tất cả folder khác lại cho gọn
             document.querySelectorAll('.folder-wrapper').forEach(f => f.classList.remove('active'));
-
-            // Nếu folder này chưa mở thì mở nó ra
-            if (!wasActive) {
-                folder.classList.add('active');
-            }
+            if (!wasActive) folder.classList.add('active');
         }
     </script>
 
